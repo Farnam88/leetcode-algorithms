@@ -1,7 +1,6 @@
-using Algorithm.Laboratory;
 using Algorithm.Laboratory.ArrayHashing;
 
-namespace Algorithm.Tests.ArrayHashingTests;
+namespace Algorithm.Tests.ArrayHashing;
 
 public class EasyArrayHashingTests
 {
