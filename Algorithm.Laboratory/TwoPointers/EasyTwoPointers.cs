@@ -6,20 +6,18 @@ public class EasyTwoPointers
 {
     public bool IsPalindrome(string s)
     {
-        int r = s.Length - 1;
-        int l = 0;
-        while (l < r)
+        int rInd = s.Length - 1;
+        int ind = 0;
+        while (ind < rInd)
         {
-            while (l < r && !char.IsLetterOrDigit(s[l]))
-                l++;
-
-            while (r > l && !char.IsLetterOrDigit(s[r]))
-                r--;
-
-            if (char.ToLower(s[l]) != char.ToLower(s[r]))
+            while (ind < rInd && !char.IsLetterOrDigit(s[ind]))
+                ind++;
+            while (ind < rInd && !char.IsLetterOrDigit(s[rInd]))
+                rInd--;
+            if (char.ToLower(s[ind]) != char.ToLower(s[rInd]))
                 return false;
-            l++;
-            r--;
+            ind++;
+            rInd--;
         }
 
         return true;

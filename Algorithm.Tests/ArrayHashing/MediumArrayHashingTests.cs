@@ -1,7 +1,6 @@
-﻿using Algorithm.Laboratory;
-using Algorithm.Laboratory.ArrayHashing;
+﻿using Algorithm.Laboratory.ArrayHashing;
 
-namespace Algorithm.Tests.ArrayHashingTests;
+namespace Algorithm.Tests.ArrayHashing;
 
 public class MediumArrayHashingTests
 {
@@ -45,7 +44,8 @@ public class MediumArrayHashingTests
         {
             new object[]
             {
-                new string[] { "eat", "tea", "tan", "ate", "nat", "bat" }, new List<List<string>>
+                new string[] { "eat", "tea", "tan", "ate", "nat", "bat" }, 
+                new List<List<string>>
                 {
                     new() { "bat" },
                     new() { "nat", "tan" },
@@ -54,11 +54,13 @@ public class MediumArrayHashingTests
             },
             new object[]
             {
-                new string[] { "" }, new List<List<string>> { new() { "" } }
+                new string[] { "" },
+                new List<List<string>> { new() { "" } }
             },
             new object[]
             {
-                new string[] { "a" }, new List<List<string>> { new() { "a" } }
+                new string[] { "a" },
+                new List<List<string>> { new() { "a" } }
             }
         };
 
