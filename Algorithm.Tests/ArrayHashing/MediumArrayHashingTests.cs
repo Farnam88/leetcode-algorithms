@@ -10,7 +10,7 @@ public class MediumArrayHashingTests
     {
         _sut = new MediumArrayHashing();
     }
-    
+
     #region + GroupAnagramsTest
 
     [Theory]
@@ -37,6 +37,7 @@ public class MediumArrayHashingTests
         }
 
         Assert.Equal(resSum, sutSum);
+        Assert.Equal(result.Count, sutResult.Count);
     }
 
     public static IEnumerable<object[]> GroupAnagramsData =>
@@ -44,7 +45,7 @@ public class MediumArrayHashingTests
         {
             new object[]
             {
-                new string[] { "eat", "tea", "tan", "ate", "nat", "bat" }, 
+                new string[] { "eat", "tea", "tan", "ate", "nat", "bat" },
                 new List<List<string>>
                 {
                     new() { "bat" },

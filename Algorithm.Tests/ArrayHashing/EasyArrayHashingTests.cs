@@ -43,6 +43,4 @@ public class EasyArrayHashingTests
 
         Assert.Equal(expected, res);
     }
-
-   
 }
