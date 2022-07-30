@@ -4,6 +4,14 @@ namespace Algorithm.Laboratory.TwoPointers;
 
 public class EasyTwoPointers
 {
+    #region + IsPalindrome
+
+    /// <summary>
+    /// https://leetcode.com/problems/valid-palindrome/
+    /// 125. Valid Palindrome
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
     public bool IsPalindrome(string s)
     {
         int rInd = s.Length - 1;
@@ -22,4 +30,7 @@ public class EasyTwoPointers
 
         return true;
     }
+
+    #endregion
+
 }

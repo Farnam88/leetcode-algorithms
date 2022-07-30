@@ -2,12 +2,31 @@
 
 public class EasyArrayHashing
 {
+    #region + ContainsDuplicate
+
+    /// <summary>
+    /// https://leetcode.com/problems/contains-duplicate/
+    /// 217. Contains Duplicate
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
     public bool ContainsDuplicate(int[] nums)
     {
         var hahSet = new HashSet<int>(nums);
         return nums.Length != hahSet.Count;
     }
 
+    #endregion
+
+    #region + IsAnagram
+
+    /// <summary>
+    /// https://leetcode.com/problems/valid-anagram/
+    /// 242. Valid Anagram
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
     public bool IsAnagram(string s, string t)
     {
         if (s.Length != t.Length)
@@ -46,6 +65,17 @@ public class EasyArrayHashing
         return true;
     }
 
+    #endregion
+
+    #region + TwoSum
+
+    /// <summary>
+    /// https://leetcode.com/problems/two-sum/
+    /// 1. Two Sum
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
     public int[] TwoSum(int[] nums, int target)
     {
         for (int i = 0; i < nums.Length; i++)
@@ -59,4 +89,6 @@ public class EasyArrayHashing
 
         return new int[] { };
     }
+
+    #endregion
 }

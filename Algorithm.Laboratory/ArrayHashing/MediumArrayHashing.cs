@@ -4,6 +4,14 @@ namespace Algorithm.Laboratory.ArrayHashing;
 
 public class MediumArrayHashing
 {
+    #region + GroupAnagrams
+
+    /// <summary>
+    /// https://leetcode.com/problems/group-anagrams/
+    /// 49. Group Anagrams
+    /// </summary>
+    /// <param name="strs"></param>
+    /// <returns></returns>
     public IList<IList<string>> GroupAnagrams(string[] strs)
     {
         var result = new Dictionary<string, IList<string>>();
@@ -24,6 +32,17 @@ public class MediumArrayHashing
         return result.Values.ToList();
     }
 
+    #endregion
+
+    #region + TopKFrequent
+
+    /// <summary>
+    /// https://leetcode.com/problems/top-k-frequent-elements/
+    /// 347. Top K Frequent Elements
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
     public int[] TopKFrequent(int[] nums, int k)
     {
         var grouping = new Dictionary<int, int>();
@@ -60,6 +79,16 @@ public class MediumArrayHashing
         return result;
     }
 
+    #endregion
+
+    #region + ProductExceptSelf
+
+    /// <summary>
+    /// https://leetcode.com/problems/product-of-array-except-self/
+    /// 238. Product of Array Except Self
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
     public int[] ProductExceptSelf(int[] nums)
     {
         var length = nums.Length;
@@ -79,6 +108,16 @@ public class MediumArrayHashing
         return result;
     }
 
+    #endregion
+
+    #region + IsValidSudoku
+
+    /// <summary>
+    /// https://leetcode.com/problems/valid-sudoku/
+    /// 36. Valid Sudoku
+    /// </summary>
+    /// <param name="board"></param>
+    /// <returns></returns>
     public bool IsValidSudoku(char[][] board)
     {
         var col = new Dictionary<int, HashSet<char>>(9);
@@ -113,6 +152,16 @@ public class MediumArrayHashing
         return true;
     }
 
+    #endregion
+
+    #region + Encode and Decode
+
+    /// <summary>
+    /// https://www.lintcode.com/problem/659/
+    /// 659 · Encode and Decode Strings
+    /// </summary>
+    /// <param name="strs"></param>
+    /// <returns></returns>
     public String encode(List<String> strs)
     {
         StringBuilder strb = new StringBuilder();
@@ -125,6 +174,12 @@ public class MediumArrayHashing
         return strb.ToString();
     }
 
+    /// <summary>
+    /// https://www.lintcode.com/problem/659/
+    /// 659 · Encode and Decode Strings
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public List<String> decode(String str)
     {
         int i = 0;
@@ -144,6 +199,16 @@ public class MediumArrayHashing
         return res;
     }
 
+    #endregion
+
+    #region + LongestConsecutive
+
+    /// <summary>
+    /// https://leetcode.com/problems/longest-consecutive-sequence/
+    /// 128. Longest Consecutive Sequence
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
     public int LongestConsecutive(int[] nums)
     {
         var input = new HashSet<int>(nums);
@@ -160,4 +225,7 @@ public class MediumArrayHashing
 
         return result;
     }
+
+    #endregion
+
 }

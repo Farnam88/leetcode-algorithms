@@ -96,4 +96,19 @@ public class MediumTwoPointersTests
         };
 
     #endregion
+
+    #region + MaxAreaTests
+
+    [Theory]
+    [InlineData(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 }, 49)]
+    [InlineData(new int[] { 1, 1 }, 1)]
+    [InlineData(new int[] { 2, 3, 4, 5, 18, 17, 6 }, 17)]
+    [InlineData(new int[] { 1, 1000, 1000, 6, 2, 5, 4, 8, 3, 7 }, 1000)]
+    public void MaxAreaTests(int[] height, int expected)
+    {
+        var result = _sut.MaxArea(height);
+        Assert.Equal(expected, result);
+    }
+
+    #endregion
 }

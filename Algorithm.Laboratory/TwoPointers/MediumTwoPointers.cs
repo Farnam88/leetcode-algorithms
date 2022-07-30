@@ -4,6 +4,13 @@ public class MediumTwoPointers
 {
     #region + TwoSum
 
+    /// <summary>
+    /// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+    /// 167. Two Sum II - Input Array Is Sorted
+    /// </summary>
+    /// <param name="numbers"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
     public int[] TwoSum(int[] numbers, int target)
     {
         int[] result = new int[2];
@@ -31,6 +38,12 @@ public class MediumTwoPointers
 
     #region + ThreeSum
 
+    /// <summary>
+    /// https://leetcode.com/problems/3sum/
+    /// 15. 3Sum
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
     public IList<IList<int>> ThreeSum(int[] nums)
     {
         var result = new List<IList<int>>();
@@ -60,6 +73,34 @@ public class MediumTwoPointers
         }
 
         return result;
+    }
+
+    #endregion
+
+    #region + MaxArea
+
+    /// <summary>
+    /// https://leetcode.com/problems/container-with-most-water/
+    /// 11. Container With Most Water
+    /// </summary>
+    /// <param name="height"></param>
+    /// <returns></returns>
+    public int MaxArea(int[] height)
+    {
+        int left = 0;
+        int right = height.Length - 1;
+        int maxVol = 0;
+        while (left < right)
+        {
+            var vol = Math.Min(height[left], height[right]) * (right - left);
+            maxVol = Math.Max(maxVol, vol);
+            if (height[left] < height[right])
+                left++;
+            else
+                right--;
+        }
+
+        return maxVol;
     }
 
     #endregion
