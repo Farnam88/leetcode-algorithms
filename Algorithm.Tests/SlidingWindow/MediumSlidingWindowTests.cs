@@ -42,4 +42,26 @@ public class MediumSlidingWindowTests
     }
 
     #endregion
+
+    #region + CheckInclusionTest
+
+    [Theory]
+    [InlineData("ab", "eidbaooo", true)]
+    [InlineData("ab", "eidboaoo", false)]
+    public void CheckInclusionTest(string s1, string s2, bool expected)
+    {
+        var result = _sut.CheckInclusion(s1, s2);
+
+        Assert.Equal(expected, result);
+    }
+    [Theory]
+    [InlineData("ab", "eidbaooo", true)]
+    [InlineData("ab", "eidboaoo", false)]
+    public void CheckInclusionTest2(string s1, string s2, bool expected)
+    {
+        var result = _sut.CheckInclusion2(s1, s2);
+
+        Assert.Equal(expected, result);
+    }
+    #endregion
 }
