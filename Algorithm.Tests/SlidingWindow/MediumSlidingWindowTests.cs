@@ -57,6 +57,8 @@ public class MediumSlidingWindowTests
     [Theory]
     [InlineData("ab", "eidbaooo", true)]
     [InlineData("ab", "eidboaoo", false)]
+    [InlineData("ab", "cabd", true)]
+    [InlineData("cd", "accbg", false)]
     public void CheckInclusionTest2(string s1, string s2, bool expected)
     {
         var result = _sut.CheckInclusion2(s1, s2);
