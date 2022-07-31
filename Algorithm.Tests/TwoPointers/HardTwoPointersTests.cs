@@ -1,6 +1,4 @@
-﻿using Algorithm.Laboratory.TwoPointers;
-
-namespace Algorithm.Tests.TwoPointers;
+﻿namespace Algorithm.Tests.TwoPointers;
 
 public class HardTwoPointersTests
 {

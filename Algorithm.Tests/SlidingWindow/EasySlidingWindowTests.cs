@@ -1,6 +1,4 @@
-﻿using Algorithm.Laboratory.SlidingWindow;
-
-namespace Algorithm.Tests.SlidingWindow;
+﻿namespace Algorithm.Tests.SlidingWindow;
 
 public class EasySlidingWindowTests
 {

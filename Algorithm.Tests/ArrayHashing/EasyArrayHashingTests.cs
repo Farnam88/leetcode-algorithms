@@ -1,5 +1,3 @@
-using Algorithm.Laboratory.ArrayHashing;
-
 namespace Algorithm.Tests.ArrayHashing;
 
 public class EasyArrayHashingTests

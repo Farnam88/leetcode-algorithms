@@ -1,6 +1,4 @@
-﻿using Algorithm.Laboratory.ArrayHashing;
-
-namespace Algorithm.Tests.ArrayHashing;
+﻿namespace Algorithm.Tests.ArrayHashing;
 
 public class MediumArrayHashingTests
 {
