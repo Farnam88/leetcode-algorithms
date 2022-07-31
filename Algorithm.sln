@@ -1,8 +1,4 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithm.ConApp", "Algorithm.ConApp\Algorithm.ConApp.csproj", "{883BD0DE-EDDB-4770-95CD-FF27987C2672}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithm.WebApi", "Algorithm.WebApi\Algorithm.WebApi.csproj", "{2E19ED39-CEA8-4CA9-BD33-F24486BCBB0E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithm.Laboratory", "Algorithm.Laboratory\Algorithm.Laboratory.csproj", "{A41F5F71-9FE5-4A71-AADA-B429E459E09F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithm.Tests", "Algorithm.Tests\Algorithm.Tests.csproj", "{57F29BC9-E062-4ED3-BDC4-B46973E0A45D}"
@@ -13,14 +9,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{883BD0DE-EDDB-4770-95CD-FF27987C2672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{883BD0DE-EDDB-4770-95CD-FF27987C2672}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{883BD0DE-EDDB-4770-95CD-FF27987C2672}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{883BD0DE-EDDB-4770-95CD-FF27987C2672}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E19ED39-CEA8-4CA9-BD33-F24486BCBB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E19ED39-CEA8-4CA9-BD33-F24486BCBB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E19ED39-CEA8-4CA9-BD33-F24486BCBB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E19ED39-CEA8-4CA9-BD33-F24486BCBB0E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A41F5F71-9FE5-4A71-AADA-B429E459E09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A41F5F71-9FE5-4A71-AADA-B429E459E09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A41F5F71-9FE5-4A71-AADA-B429E459E09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
