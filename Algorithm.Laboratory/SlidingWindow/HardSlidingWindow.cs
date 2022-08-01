@@ -57,4 +57,41 @@ public class HardSlidingWindow
     }
 
     #endregion
+
+    #region + MaxSlidingWindow
+
+    /// <summary>
+    /// Monotonically Decreasing Queue
+    /// https://leetcode.com/problems/sliding-window-maximum/
+    /// 239. Sliding Window Maximum
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public int[] MaxSlidingWindow(int[] nums, int k)
+    {
+        LinkedList<int> queue = new LinkedList<int>();
+        List<int> result = new List<int>();
+        int left = 0;
+
+        for (int right = 0; right < nums.Length; right++)
+        {
+            while (queue.Count > 0 && nums[queue.Last.Value] < nums[right])
+                queue.RemoveLast();
+
+            queue.AddLast(right);
+
+            if (left > queue.First.Value)
+                queue.RemoveFirst();
+            if (right + 1 >= k)
+            {
+                result.Add(nums[queue.First.Value]);
+                left++;
+            }
+        }
+
+        return result.ToArray();
+    }
+
+    #endregion
 }
