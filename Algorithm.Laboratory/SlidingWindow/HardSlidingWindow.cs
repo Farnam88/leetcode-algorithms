@@ -15,47 +15,45 @@ public class HardSlidingWindow
     /// <returns></returns>
     public string MinWindow(string s, string t)
     {
-        if (t == "")
+        if (t == "" || t == s)
+            return t;
+        if (t.Length > s.Length)
             return "";
-        var countT = new Dictionary<char, int>();
+        var mapping = new Dictionary<char, int>();
         var window = new Dictionary<char, int>();
         for (int i = 0; i < t.Length; i++)
         {
-            countT.TryAdd(t[i], 0);
-            countT[t[i]]++;
+            mapping.TryAdd(t[i], 0);
+            mapping[t[i]]++;
         }
 
-        int left = 0, have = 0, need = countT.Count;
-        int[] result = new int[2];
-        int lenght = int.MaxValue;
+        int left = 0, length = int.MaxValue, have = 0, need = mapping.Count;
+        (int left, int right) range = (0, 0);
         for (int right = 0; right < s.Length; right++)
         {
-            char current = s[right];
+            var current = s[right];
             window.TryAdd(current, 0);
             window[current]++;
-            if (countT.ContainsKey(current) && window[current] == countT[current])
+            if (mapping.ContainsKey(current) && window[current] == mapping[current])
                 have++;
             while (have == need)
             {
-                if ((right - left + 1) < lenght)
+                if ((right - left + 1) < length)
                 {
-                    result[0] = left;
-                    result[1] = right;
-                    lenght = right - left + 1;
+                    length = right - left + 1;
+                    range.left = left;
+                    range.right = right + 1;
                 }
 
-                char currentLeft = s[left];
-
+                var currentLeft = s[left];
                 window[currentLeft]--;
-                if (countT.ContainsKey(s[left]) && window[currentLeft] < countT[currentLeft])
+                if (mapping.ContainsKey(currentLeft) && mapping[currentLeft] > window[currentLeft])
                     have--;
                 left++;
             }
         }
 
-        int l = result[0];
-        int r = result[1] + 1;
-        return lenght != int.MaxValue ? s[l..r] : "";
+        return length != int.MaxValue ? s[range.left..range.right] : "";
     }
 
     #endregion

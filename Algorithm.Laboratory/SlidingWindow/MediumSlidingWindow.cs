@@ -121,33 +121,38 @@ public class MediumSlidingWindow
     {
         if (s1.Length > s2.Length)
             return false;
-        char[] s1Chars = new char[26], s2Chars = new char[26];
-        int matches = 0, left = 0;
+        if (s1 == s2)
+            return true;
+
+        char[] s1Map = new char[26], s2Map = new char[26];
+
         for (int i = 0; i < s1.Length; i++)
         {
-            s1Chars[s1[i] - 'a']++;
-            s2Chars[s2[i] - 'a']++;
+            s1Map[s1[i] - 'a']++;
+            s2Map[s2[i] - 'a']++;
         }
 
+        int matches = 0, left = 0;
+
         for (int i = 0; i < 26; i++)
-            matches += s1Chars[i] == s2Chars[i] ? 1 : 0;
+            matches += s1Map[i] == s2Map[i] ? 1 : 0;
+
         for (int right = s1.Length; right < s2.Length; right++)
         {
             if (matches == 26)
                 return true;
             int index = s2[right] - 'a';
-            s2Chars[index]++;
-
-            if (s1Chars[index] == s2Chars[index])
+            s2Map[index]++;
+            if (s1Map[index] == s2Map[index])
                 matches++;
-            else if (s1Chars[index] + 1 == s2Chars[index])
+            if (s1Map[index] + 1 == s2Map[index])
                 matches--;
 
             index = s2[left] - 'a';
-            s2Chars[index]--;
-            if (s1Chars[index] == s2Chars[index])
+            s2Map[index]--;
+            if (s1Map[index] == s2Map[index])
                 matches++;
-            else if (s1Chars[index] - 1 == s2Chars[index])
+            if (s1Map[index] - 1 == s2Map[index])
                 matches--;
             left++;
         }
