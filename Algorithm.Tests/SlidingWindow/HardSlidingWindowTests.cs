@@ -25,8 +25,7 @@ public class HardSlidingWindowTests
     }
 
     #endregion
-
-
+    
     #region + MaxSlidingWindowTest
 
     [Theory]
