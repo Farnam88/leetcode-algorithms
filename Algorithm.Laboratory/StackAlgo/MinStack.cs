@@ -1,8 +1,8 @@
 ﻿namespace Algorithm.Laboratory.StackAlgo;
 
 /// <summary>
-/// https://leetcode.com/problems/min-stack/
 /// 155. Min Stack
+/// https://leetcode.com/problems/min-stack/
 /// </summary>
 public class MinStack
 {

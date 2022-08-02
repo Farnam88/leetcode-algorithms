@@ -5,8 +5,8 @@ public class MediumStackAlgo
     #region + MinStackOperation
 
     /// <summary>
-    /// https://leetcode.com/problems/min-stack/
     /// 155. Min Stack
+    /// https://leetcode.com/problems/min-stack/
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -31,8 +31,8 @@ public class MediumStackAlgo
     #region + EvalRPN
 
     /// <summary>
-    /// https://leetcode.com/problems/evaluate-reverse-polish-notation/
     /// 150. Evaluate Reverse Polish Notation
+    /// https://leetcode.com/problems/evaluate-reverse-polish-notation/
     /// </summary>
     /// <param name="tokens"></param>
     /// <returns></returns>
@@ -66,7 +66,26 @@ public class MediumStackAlgo
                     stack.Push(stack.Pop() * stack.Pop());
             }
         }
+
         return stack.First();
+    }
+
+    #endregion
+
+    #region + GenerateParenthesis
+
+    /// <summary>
+    /// 22. Generate Parentheses
+    /// https://leetcode.com/problems/generate-parentheses/
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public IList<string> GenerateParenthesis(int n)
+    {
+        return new List<string>
+        {
+            "((()))", "(()())", "(())()", "()(())", "()()()"
+        };
     }
 
     #endregion

@@ -31,25 +31,8 @@ public class MediumTwoPointersTests
     public void ThreeSumTest(int[] numbers, List<List<int>> expectedResult)
     {
         var result = _sut.ThreeSum(numbers);
-        long expectedSum = 0, resSum = 0;
-        foreach (var item in expectedResult)
-        {
-            foreach (var i in item)
-            {
-                expectedSum += i.GetHashCode();
-            }
-        }
 
-        foreach (var item in result)
-        {
-            foreach (var i in item)
-            {
-                resSum += i.GetHashCode();
-            }
-        }
-
-        Assert.Equal(expectedSum, resSum);
-        Assert.Equal(expectedResult.Count, result.Count);
+        result.Should().BeEquivalentTo(expectedResult);
     }
 
     public static IEnumerable<object[]> ThreeSumData =>

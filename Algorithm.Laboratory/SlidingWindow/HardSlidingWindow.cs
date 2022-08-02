@@ -7,8 +7,8 @@ public class HardSlidingWindow
     #region + MinWindow
 
     /// <summary>
-    /// https://leetcode.com/problems/minimum-window-substring/
     /// 76. Minimum Window Substring
+    /// https://leetcode.com/problems/minimum-window-substring/
     /// </summary>
     /// <param name="s"></param>
     /// <param name="t"></param>
@@ -64,9 +64,9 @@ public class HardSlidingWindow
     #region + MaxSlidingWindow
 
     /// <summary>
+    /// 239. Sliding Window Maximum
     /// Monotonically Decreasing Queue
     /// https://leetcode.com/problems/sliding-window-maximum/
-    /// 239. Sliding Window Maximum
     /// </summary>
     /// <param name="nums"></param>
     /// <param name="k"></param>

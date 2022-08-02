@@ -5,8 +5,8 @@ public class EasyArrayHashing
     #region + ContainsDuplicate
 
     /// <summary>
-    /// https://leetcode.com/problems/contains-duplicate/
     /// 217. Contains Duplicate
+    /// https://leetcode.com/problems/contains-duplicate/
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -21,8 +21,8 @@ public class EasyArrayHashing
     #region + IsAnagram
 
     /// <summary>
-    /// https://leetcode.com/problems/valid-anagram/
     /// 242. Valid Anagram
+    /// https://leetcode.com/problems/valid-anagram/
     /// </summary>
     /// <param name="s"></param>
     /// <param name="t"></param>
@@ -70,8 +70,8 @@ public class EasyArrayHashing
     #region + TwoSum
 
     /// <summary>
-    /// https://leetcode.com/problems/two-sum/
     /// 1. Two Sum
+    /// https://leetcode.com/problems/two-sum/
     /// </summary>
     /// <param name="nums"></param>
     /// <param name="target"></param>

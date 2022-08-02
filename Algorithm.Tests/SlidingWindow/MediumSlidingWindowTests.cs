@@ -52,6 +52,7 @@ public class MediumSlidingWindowTests
 
         Assert.Equal(expected, result);
     }
+
     [Theory]
     [InlineData("ab", "eidbaooo", true)]
     [InlineData("ab", "eidboaoo", false)]
@@ -63,5 +64,6 @@ public class MediumSlidingWindowTests
 
         Assert.Equal(expected, result);
     }
+
     #endregion
 }

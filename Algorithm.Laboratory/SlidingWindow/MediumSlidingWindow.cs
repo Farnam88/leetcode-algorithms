@@ -5,8 +5,8 @@ public class MediumSlidingWindow
     #region + LengthOfLongestSubstring
 
     /// <summary>
-    /// https://leetcode.com/problems/longest-substring-without-repeating-characters/
     /// 3. Longest Substring Without Repeating Characters
+    /// https://leetcode.com/problems/longest-substring-without-repeating-characters/
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
@@ -36,8 +36,8 @@ public class MediumSlidingWindow
     #region + CharacterReplacement
 
     /// <summary>
-    /// https://leetcode.com/problems/longest-repeating-character-replacement/
     /// 424. Longest Repeating Character Replacement
+    /// https://leetcode.com/problems/longest-repeating-character-replacement/
     /// </summary>
     /// <param name="s">
     /// <code>1 &lt;= s.length &lt;= 105</code>
@@ -73,8 +73,8 @@ public class MediumSlidingWindow
     #region + CheckInclusion
 
     /// <summary>
-    /// https://leetcode.com/problems/permutation-in-string/submissions/
     /// 567. Permutation in String
+    /// https://leetcode.com/problems/permutation-in-string/submissions/
     /// </summary>
     /// <param name="s1"></param>
     /// <param name="s2"></param>
@@ -111,8 +111,8 @@ public class MediumSlidingWindow
     }
 
     /// <summary>
-    /// https://leetcode.com/problems/permutation-in-string/submissions/
     /// 567. Permutation in String
+    /// https://leetcode.com/problems/permutation-in-string/submissions/
     /// </summary>
     /// <param name="s1"></param>
     /// <param name="s2"></param>

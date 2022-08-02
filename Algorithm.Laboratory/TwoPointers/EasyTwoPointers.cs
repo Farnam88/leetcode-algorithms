@@ -7,8 +7,8 @@ public class EasyTwoPointers
     #region + IsPalindrome
 
     /// <summary>
-    /// https://leetcode.com/problems/valid-palindrome/
     /// 125. Valid Palindrome
+    /// https://leetcode.com/problems/valid-palindrome/
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
@@ -32,5 +32,4 @@ public class EasyTwoPointers
     }
 
     #endregion
-
 }

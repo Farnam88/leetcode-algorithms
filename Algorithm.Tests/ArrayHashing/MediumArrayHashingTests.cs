@@ -1,4 +1,5 @@
-﻿namespace Algorithm.Tests.ArrayHashing;
+﻿
+namespace Algorithm.Tests.ArrayHashing;
 
 public class MediumArrayHashingTests
 {
@@ -17,25 +18,7 @@ public class MediumArrayHashingTests
     {
         var sutResult = _sut.GroupAnagrams(strs);
 
-        long sutSum = 0, resSum = 0;
-        foreach (var item in sutResult)
-        {
-            foreach (var i in item)
-            {
-                sutSum += i.GetHashCode();
-            }
-        }
-
-        foreach (var item in result)
-        {
-            foreach (var i in item)
-            {
-                resSum += i.GetHashCode();
-            }
-        }
-
-        Assert.Equal(resSum, sutSum);
-        Assert.Equal(result.Count, sutResult.Count);
+        sutResult.Should().BeEquivalentTo(result);
     }
 
     public static IEnumerable<object[]> GroupAnagramsData =>

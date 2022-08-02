@@ -7,8 +7,8 @@ public class MediumArrayHashing
     #region + GroupAnagrams
 
     /// <summary>
-    /// https://leetcode.com/problems/group-anagrams/
     /// 49. Group Anagrams
+    /// https://leetcode.com/problems/group-anagrams/
     /// </summary>
     /// <param name="strs"></param>
     /// <returns></returns>
@@ -37,8 +37,8 @@ public class MediumArrayHashing
     #region + TopKFrequent
 
     /// <summary>
-    /// https://leetcode.com/problems/top-k-frequent-elements/
     /// 347. Top K Frequent Elements
+    /// https://leetcode.com/problems/top-k-frequent-elements/
     /// </summary>
     /// <param name="nums"></param>
     /// <param name="k"></param>
@@ -84,8 +84,8 @@ public class MediumArrayHashing
     #region + ProductExceptSelf
 
     /// <summary>
-    /// https://leetcode.com/problems/product-of-array-except-self/
     /// 238. Product of Array Except Self
+    /// https://leetcode.com/problems/product-of-array-except-self/
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -113,8 +113,8 @@ public class MediumArrayHashing
     #region + IsValidSudoku
 
     /// <summary>
-    /// https://leetcode.com/problems/valid-sudoku/
     /// 36. Valid Sudoku
+    /// https://leetcode.com/problems/valid-sudoku/
     /// </summary>
     /// <param name="board"></param>
     /// <returns></returns>
@@ -157,8 +157,8 @@ public class MediumArrayHashing
     #region + Encode and Decode
 
     /// <summary>
-    /// https://www.lintcode.com/problem/659/
     /// 659 · Encode and Decode Strings
+    /// https://www.lintcode.com/problem/659/
     /// </summary>
     /// <param name="strs"></param>
     /// <returns></returns>
@@ -204,8 +204,8 @@ public class MediumArrayHashing
     #region + LongestConsecutive
 
     /// <summary>
-    /// https://leetcode.com/problems/longest-consecutive-sequence/
     /// 128. Longest Consecutive Sequence
+    /// https://leetcode.com/problems/longest-consecutive-sequence/
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -227,5 +227,4 @@ public class MediumArrayHashing
     }
 
     #endregion
-
 }

@@ -5,8 +5,8 @@ public class MediumTwoPointers
     #region + TwoSum
 
     /// <summary>
-    /// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
     /// 167. Two Sum II - Input Array Is Sorted
+    /// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
     /// </summary>
     /// <param name="numbers"></param>
     /// <param name="target"></param>
@@ -39,8 +39,8 @@ public class MediumTwoPointers
     #region + ThreeSum
 
     /// <summary>
-    /// https://leetcode.com/problems/3sum/
     /// 15. 3Sum
+    /// https://leetcode.com/problems/3sum/
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -80,8 +80,8 @@ public class MediumTwoPointers
     #region + MaxArea
 
     /// <summary>
-    /// https://leetcode.com/problems/container-with-most-water/
     /// 11. Container With Most Water
+    /// https://leetcode.com/problems/container-with-most-water/
     /// </summary>
     /// <param name="height"></param>
     /// <returns></returns>
