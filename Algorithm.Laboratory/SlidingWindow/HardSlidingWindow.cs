@@ -16,45 +16,47 @@ public class HardSlidingWindow
     public string MinWindow(string s, string t)
     {
         if (t.Length > s.Length)
-            return "";
-        var tMap = new Dictionary<char, int>();
-        var window = new Dictionary<char, int>();
+            return string.Empty;
 
+        var mapping = new Dictionary<char, int>();
+        var window = new Dictionary<char, int>();
         for (int i = 0; i < t.Length; i++)
         {
-            tMap.TryAdd(t[i], 0);
-            tMap[t[i]]++;
+            mapping.TryAdd(t[i], 0);
+            mapping[t[i]]++;
         }
 
-        int left = 0, have = 0, need = tMap.Count, length = int.MaxValue;
+        int left = 0, length = int.MaxValue, have = 0, need = mapping.Count;
         (int left, int right) range = (0, 0);
 
         for (int right = 0; right < s.Length; right++)
         {
-            var current = s[right];
-            window.TryAdd(current, 0);
-            window[current]++;
+            var currentChar = s[right];
+            window.TryAdd(currentChar, 0);
+            window[currentChar]++;
 
-            if (tMap.ContainsKey(current) && tMap[current] == window[current])
+            if (mapping.ContainsKey(currentChar) && mapping[currentChar] == window[currentChar])
                 have++;
 
-            while (have==need)
+            while (have == need)
             {
-                if ((right - left + 1) < length)
+                var windowLength = right - left + 1;
+                if (windowLength < length)
                 {
-                    length = right - left + 1;
+                    length = windowLength;
                     range.left = left;
                     range.right = right + 1;
                 }
-                current = s[left];
-                window[current]--;
-                if (tMap.ContainsKey(current) && tMap[current] > window[current])
+
+                currentChar = s[left];
+                window[currentChar]--;
+                if (mapping.ContainsKey(currentChar) && mapping[currentChar] > window[currentChar])
                     have--;
                 left++;
             }
         }
 
-        return length != int.MaxValue ? s[range.left..range.right] : "";
+        return length != int.MaxValue ? s[range.left..range.right] : string.Empty;
     }
 
     #endregion
