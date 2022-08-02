@@ -27,4 +27,47 @@ public class MediumStackAlgo
     }
 
     #endregion
+
+    #region + EvalRPN
+
+    /// <summary>
+    /// https://leetcode.com/problems/evaluate-reverse-polish-notation/
+    /// 150. Evaluate Reverse Polish Notation
+    /// </summary>
+    /// <param name="tokens"></param>
+    /// <returns></returns>
+    public int EvalRPN(string[] tokens)
+    {
+        var stack = new Stack<int>();
+        for (int i = 0; i < tokens.Length; i++)
+        {
+            var currentStr = tokens[i];
+            if (int.TryParse(currentStr, out int current))
+            {
+                stack.Push(current);
+            }
+            else
+            {
+                if (currentStr == "+")
+                    stack.Push(stack.Pop() + stack.Pop());
+                if (currentStr == "-")
+                {
+                    (int, int) items = (stack.Pop(), stack.Pop());
+                    stack.Push(items.Item2 - items.Item1);
+                }
+
+                if (currentStr == "/")
+                {
+                    (int, int) items = (stack.Pop(), stack.Pop());
+                    stack.Push(items.Item2 / items.Item1);
+                }
+
+                if (currentStr == "*")
+                    stack.Push(stack.Pop() * stack.Pop());
+            }
+        }
+        return stack.First();
+    }
+
+    #endregion
 }
