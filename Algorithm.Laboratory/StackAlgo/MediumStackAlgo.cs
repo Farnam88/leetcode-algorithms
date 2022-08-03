@@ -146,4 +146,21 @@ public class MediumStackAlgo
     }
 
     #endregion
+    
+    #region + CarFleet
+
+    /// <summary>
+    /// 853. Car Fleet
+    /// https://leetcode.com/problems/car-fleet/
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="position"></param>
+    /// <param name="speed"></param>
+    /// <returns></returns>
+    public int CarFleet(int target, int[] position, int[] speed)
+    {
+        return 1;
+    }
+
+    #endregion
 }

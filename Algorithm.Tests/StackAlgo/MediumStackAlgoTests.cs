@@ -97,4 +97,19 @@ public class MediumStackAlgoTests
     }
 
     #endregion
+
+    #region + CarFleetTest
+
+    [Theory]
+    [InlineData(12, new int[] { 10, 8, 0, 5, 3 }, new int[] { 2, 4, 1, 1, 3 }, 3)]
+    [InlineData(10, new int[] { 3 }, new int[] { 3 }, 1)]
+    [InlineData(100, new int[] { 0, 2, 4 }, new int[] { 4, 2, 1 }, 1)]
+    public void CarFleetTest(int target, int[] position, int[] speed, int expected)
+    {
+        var result = _sut.CarFleet(target, position, speed);
+
+        Assert.Equal(expected, result);
+    }
+
+    #endregion
 }
