@@ -82,10 +82,35 @@ public class MediumStackAlgo
     /// <returns></returns>
     public IList<string> GenerateParenthesis(int n)
     {
-        return new List<string>
+        List<string> result = new List<string>();
+
+        Stack<char> stack = new Stack<char>();
+
+        Rec(0, 0);
+        return result;
+
+        void Rec(int open, int close)
         {
-            "((()))", "(()())", "(())()", "()(())", "()()()"
-        };
+            if (open == close && open == n && close == n)
+            {
+                result.Add(string.Join(string.Empty, stack.Reverse()));
+                return;
+            }
+
+            if (open < n)
+            {
+                stack.Push('(');
+                Rec(open + 1, close);
+                stack.Pop();
+            }
+
+            if (open > close)
+            {
+                stack.Push(')');
+                Rec(open, close + 1);
+                stack.Pop();
+            }
+        }
     }
 
     #endregion

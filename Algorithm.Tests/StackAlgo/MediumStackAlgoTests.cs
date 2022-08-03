@@ -69,6 +69,14 @@ public class MediumStackAlgoTests
                 {
                     "()"
                 }
+            },
+            new object[]
+            {
+                2,
+                new List<string>
+                {
+                    "()()","(())"
+                }
             }
         };
 
