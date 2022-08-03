@@ -160,27 +160,21 @@ public class MediumStackAlgo
     public int CarFleet(int target, int[] position, int[] speed)
     {
         Array.Sort(position, speed);
-
         float latestArrival = -1;
-        var fleets = 0;
-        for (int right = position.Length - 1; right >= 0; right--)
-        {
-            float time = (target - position[right]) / (float)speed[right];
+        int fleet = 0;
 
-            if (fleets == 0)
-            {
-                latestArrival = time;
-                fleets++;
-            }
+        for (int i = position.Length - 1; i >= 0; i--)
+        {
+            float time = (target - position[i]) / (float)speed[i];
 
             if (time > latestArrival)
             {
                 latestArrival = time;
-                fleets++;
+                fleet++;
             }
         }
 
-        return fleets;
+        return fleet;
     }
 
     #endregion
