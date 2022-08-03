@@ -125,7 +125,24 @@ public class MediumStackAlgo
     /// <returns></returns>
     public int[] DailyTemperatures(int[] temperatures)
     {
-        return Array.Empty<int>();
+        if (temperatures.Length <= 1)
+            return new[] { 0 };
+        int[] result = new int[temperatures.Length];
+
+        Stack<int> stackIndices = new Stack<int>();
+
+        for (int right = 0; right < temperatures.Length; right++)
+        {
+            while (stackIndices.Count > 0 && temperatures[right] > temperatures[stackIndices.Peek()])
+            {
+                var indexNumber = stackIndices.Pop();
+                result[indexNumber] = right - indexNumber;
+            }
+
+            stackIndices.Push(right);
+        }
+
+        return result;
     }
 
     #endregion
