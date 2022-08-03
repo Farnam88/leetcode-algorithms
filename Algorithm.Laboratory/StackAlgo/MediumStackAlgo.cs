@@ -114,4 +114,19 @@ public class MediumStackAlgo
     }
 
     #endregion
+
+    #region + DailyTemperatures
+
+    /// <summary>
+    /// 739. Daily Temperatures
+    /// https://leetcode.com/problems/daily-temperatures/
+    /// </summary>
+    /// <param name="temperatures"></param>
+    /// <returns></returns>
+    public int[] DailyTemperatures(int[] temperatures)
+    {
+        return Array.Empty<int>();
+    }
+
+    #endregion
 }

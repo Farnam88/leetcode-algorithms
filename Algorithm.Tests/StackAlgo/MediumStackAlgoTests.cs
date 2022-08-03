@@ -44,10 +44,10 @@ public class MediumStackAlgoTests
 
     [Theory]
     [MemberData(nameof(GenerateParenthesisData))]
-    public void GenerateParenthesis(int n,List<string> expected)
+    public void GenerateParenthesis(int n, List<string> expected)
     {
         var result = _sut.GenerateParenthesis(n);
-        
+
         result.Should().BeEquivalentTo(expected);
     }
 
@@ -75,10 +75,25 @@ public class MediumStackAlgoTests
                 2,
                 new List<string>
                 {
-                    "()()","(())"
+                    "()()", "(())"
                 }
             }
         };
+
+    #endregion
+
+    #region + DailyTemperaturesTest
+
+    [Theory]
+    [InlineData(new int[] { 73, 74, 75, 71, 69, 72, 76, 73 }, new int[] { 1, 1, 4, 2, 1, 1, 0, 0 })]
+    [InlineData(new int[] { 30, 40, 50, 60 }, new int[] { 1, 1, 1, 0 })]
+    [InlineData(new int[] { 30, 60, 90 }, new int[] { 1, 1, 0 })]
+    public void DailyTemperaturesTest(int[] temperatures, int[] expected)
+    {
+        var result = _sut.DailyTemperatures(temperatures);
+
+        result.Should().BeEquivalentTo(expected);
+    }
 
     #endregion
 }
