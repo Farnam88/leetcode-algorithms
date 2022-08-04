@@ -38,32 +38,25 @@ public class MediumStackAlgo
     /// <returns></returns>
     public int EvalRPN(string[] tokens)
     {
-        var stack = new Stack<int>();
-        for (int i = 0; i < tokens.Length; i++)
+        Stack<int> stack = new();
+        for (int right = 0; right < tokens.Length; right++)
         {
-            var currentStr = tokens[i];
-            if (int.TryParse(currentStr, out int current))
+            var token = tokens[right];
+            if (int.TryParse(token, out int currentNumber))
             {
-                stack.Push(current);
+                stack.Push(currentNumber);
             }
             else
             {
-                if (currentStr == "+")
-                    stack.Push(stack.Pop() + stack.Pop());
-                if (currentStr == "-")
-                {
-                    (int, int) items = (stack.Pop(), stack.Pop());
-                    stack.Push(items.Item2 - items.Item1);
-                }
-
-                if (currentStr == "/")
-                {
-                    (int, int) items = (stack.Pop(), stack.Pop());
-                    stack.Push(items.Item2 / items.Item1);
-                }
-
-                if (currentStr == "*")
-                    stack.Push(stack.Pop() * stack.Pop());
+                (int last, int first) items = (stack.Pop(), stack.Pop());
+                if (token == "+")
+                    stack.Push(items.first + items.last);
+                if (token == "*")
+                    stack.Push(items.first * items.last);
+                if (token == "/")
+                    stack.Push(items.first / items.last);
+                if (token == "-")
+                    stack.Push(items.first - items.last);
             }
         }
 
@@ -82,14 +75,15 @@ public class MediumStackAlgo
     /// <returns></returns>
     public IList<string> GenerateParenthesis(int n)
     {
-        List<string> result = new List<string>();
-
         Stack<char> stack = new Stack<char>();
 
-        Rec(0, 0);
+        List<string> result = new();
+
+        Recursion(0, 0);
+
         return result;
 
-        void Rec(int open, int close)
+        void Recursion(int open, int close)
         {
             if (open == close && open == n && close == n)
             {
@@ -100,14 +94,14 @@ public class MediumStackAlgo
             if (open < n)
             {
                 stack.Push('(');
-                Rec(open + 1, close);
+                Recursion(open + 1, close);
                 stack.Pop();
             }
 
             if (open > close)
             {
                 stack.Push(')');
-                Rec(open, close + 1);
+                Recursion(open, close + 1);
                 stack.Pop();
             }
         }
@@ -127,16 +121,16 @@ public class MediumStackAlgo
     {
         if (temperatures.Length <= 1)
             return new[] { 0 };
-        int[] result = new int[temperatures.Length];
 
         Stack<int> stackIndices = new Stack<int>();
+        var result = new int[temperatures.Length];
 
         for (int right = 0; right < temperatures.Length; right++)
         {
-            while (stackIndices.Count > 0 && temperatures[right] > temperatures[stackIndices.Peek()])
+            while (stackIndices.Count > 0 && temperatures[stackIndices.Peek()] < temperatures[right])
             {
-                var indexNumber = stackIndices.Pop();
-                result[indexNumber] = right - indexNumber;
+                var dayIndex = stackIndices.Pop();
+                result[dayIndex] = right - dayIndex;
             }
 
             stackIndices.Push(right);
@@ -160,17 +154,16 @@ public class MediumStackAlgo
     public int CarFleet(int target, int[] position, int[] speed)
     {
         Array.Sort(position, speed);
-        float latestArrival = -1;
         int fleet = 0;
+        float latestArrivalTime = -1;
 
         for (int i = position.Length - 1; i >= 0; i--)
         {
-            float time = (target - position[i]) / (float)speed[i];
-
-            if (time > latestArrival)
+            var currentArrivalTime = (target - position[i]) / (float)speed[i];
+            if (currentArrivalTime > latestArrivalTime)
             {
-                latestArrival = time;
                 fleet++;
+                latestArrivalTime = currentArrivalTime;
             }
         }
 

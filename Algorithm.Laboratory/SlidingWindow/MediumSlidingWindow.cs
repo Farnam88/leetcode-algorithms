@@ -14,21 +14,22 @@ public class MediumSlidingWindow
     {
         if (s.Length <= 1)
             return s.Length;
-        HashSet<char> window = new HashSet<char>();
-        int left = 0, result = 0;
+        int left = 0, maxLenght = -1;
+        Queue<int> queue = new Queue<int>();
+
         for (int right = 0; right < s.Length; right++)
         {
-            while (window.Contains(s[right]))
+            while (queue.Contains(s[right]))
             {
-                window.Remove(s[left]);
+                queue.Dequeue();
                 left++;
             }
 
-            window.Add(s[right]);
-            result = Math.Max(result, (right - left + 1));
+            queue.Enqueue(s[right]);
+            maxLenght = Math.Max((right - left + 1), maxLenght);
         }
 
-        return result;
+        return maxLenght;
     }
 
     #endregion
@@ -48,17 +49,18 @@ public class MediumSlidingWindow
     /// <returns></returns>
     public int CharacterReplacement(string s, int k)
     {
-        int left = 0, result = 0;
-        var mapping = new Dictionary<char, int>();
+        if (s.Length <= 1)
+            return s.Length;
+        int left = 0, result = -1;
+        var mapper = new Dictionary<char, int>();
         for (int right = 0; right < s.Length; right++)
         {
-            mapping.TryAdd(s[right], 0);
-            mapping[s[right]]++;
-
-            while ((right - left + 1) - mapping.Values.Max() > k)
+            mapper.TryAdd(s[right], 0);
+            mapper[s[right]]++;
+            while ((right - left + 1) - mapper.Values.Max() > k)
             {
-                mapping.TryAdd(s[left], 0);
-                mapping[s[left]]--;
+                mapper.TryAdd(s[left], 0);
+                mapper[s[left]]--;
                 left++;
             }
 
@@ -121,38 +123,38 @@ public class MediumSlidingWindow
     {
         if (s1.Length > s2.Length)
             return false;
-        if (s1 == s2)
-            return true;
-
-        char[] s1Map = new char[26], s2Map = new char[26];
+        char[] sChars = new char[26], premChars = new char[26];
+        int matches = 0, left = 0;
 
         for (int i = 0; i < s1.Length; i++)
         {
-            s1Map[s1[i] - 'a']++;
-            s2Map[s2[i] - 'a']++;
+            sChars[s1[i] - 'a']++;
+            premChars[s2[i] - 'a']++;
         }
 
-        int matches = 0, left = 0;
-
         for (int i = 0; i < 26; i++)
-            matches += s1Map[i] == s2Map[i] ? 1 : 0;
+        {
+            matches += sChars[i] == premChars[i] ? 1 : 0;
+        }
 
         for (int right = s1.Length; right < s2.Length; right++)
         {
             if (matches == 26)
                 return true;
-            int index = s2[right] - 'a';
-            s2Map[index]++;
-            if (s1Map[index] == s2Map[index])
+            
+            var currentIndex = s2[right] - 'a';
+            premChars[currentIndex]++;
+
+            if (sChars[currentIndex] == premChars[currentIndex])
                 matches++;
-            if (s1Map[index] + 1 == s2Map[index])
+            if (sChars[currentIndex] + 1 == premChars[currentIndex])
                 matches--;
 
-            index = s2[left] - 'a';
-            s2Map[index]--;
-            if (s1Map[index] == s2Map[index])
+            currentIndex = s2[left] - 'a';
+            premChars[currentIndex]--;
+            if (sChars[currentIndex] == premChars[currentIndex])
                 matches++;
-            if (s1Map[index] - 1 == s2Map[index])
+            if (sChars[currentIndex] - 1 == premChars[currentIndex])
                 matches--;
             left++;
         }
