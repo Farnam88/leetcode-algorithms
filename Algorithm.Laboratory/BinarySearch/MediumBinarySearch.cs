@@ -45,4 +45,40 @@ public class MediumBinarySearch
     }
 
     #endregion
+
+    #region + MinEatingSpeed
+
+    /// <summary>
+    /// 875. Koko Eating Bananas
+    /// https://leetcode.com/problems/koko-eating-bananas/
+    /// </summary>
+    /// <param name="piles"></param>
+    /// <param name="h"></param>
+    /// <returns></returns>
+    public int MinEatingSpeed(int[] piles, int h)
+    {
+        int left = 1, right = piles.Max();
+        decimal result = right;
+        while (left <= right)
+        {
+            var mid = (left + right) / 2;
+            decimal hours = 0;
+            for (int i = 0; i < piles.Length; i++)
+            {
+                hours += Math.Ceiling((piles[i] / (decimal)mid));
+            }
+
+            if (hours <= h)
+            {
+                result = Math.Min(result, mid);
+                right = mid - 1;
+            }
+            else
+                left = mid + 1;
+        }
+
+        return (int)result;
+    }
+
+    #endregion
 }

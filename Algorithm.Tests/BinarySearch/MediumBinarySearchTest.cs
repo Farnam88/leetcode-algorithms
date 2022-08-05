@@ -67,4 +67,19 @@ public class MediumBinarySearchTest
         };
 
     #endregion
+
+    #region + MinEatingSpeedTest
+
+    [Theory]
+    [InlineData(new int[] { 3, 6, 7, 11 }, 8, 4)]
+    [InlineData(new int[] { 30, 11, 23, 4, 20 }, 5, 30)]
+    [InlineData(new int[] { 30, 11, 23, 4, 20 }, 6, 23)]
+    public void MinEatingSpeedTest(int[] piles, int h, int expected)
+    {
+        var result = _sut.MinEatingSpeed(piles, h);
+
+        Assert.Equal(expected, result);
+    }
+
+    #endregion
 }
