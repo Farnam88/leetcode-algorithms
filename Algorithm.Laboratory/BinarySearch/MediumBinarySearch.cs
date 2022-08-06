@@ -61,11 +61,11 @@ public class MediumBinarySearch
         decimal result = right;
         while (left <= right)
         {
-            var mid = (left + right) / 2;
+            var mid = (right + left) / 2;
             decimal hours = 0;
             for (int i = 0; i < piles.Length; i++)
             {
-                hours += Math.Ceiling((piles[i] / (decimal)mid));
+                hours += Math.Ceiling(piles[i] / (decimal)mid);
             }
 
             if (hours <= h)
