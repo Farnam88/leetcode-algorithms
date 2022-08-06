@@ -81,4 +81,47 @@ public class MediumBinarySearch
     }
 
     #endregion
+
+    #region + Search
+
+    /// <summary>
+    /// 33. Search in Rotated Sorted Array
+    /// https://leetcode.com/problems/search-in-rotated-sorted-array/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public int Search(int[] nums, int target)
+    {
+        int left = 0, right = nums.Length - 1;
+        while (left <= right)
+        {
+            var mid = (right + left) / 2;
+            if (nums[mid] == target)
+            {
+                return mid;
+            }
+
+            //Left sorted Portion
+            if (nums[mid] >= nums[left])
+            {
+                if (target > nums[mid] || target < nums[left])
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+            //Right sorted Portion
+            else
+            {
+                if (target < nums[mid] || target > nums[right])
+                    right = mid - 1;
+                else
+                    left = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    #endregion
 }

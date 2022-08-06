@@ -82,4 +82,19 @@ public class MediumBinarySearchTest
     }
 
     #endregion
+
+    #region + SearchTest
+
+    [Theory]
+    [InlineData(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 0, 4)]
+    [InlineData(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 3, -1)]
+    [InlineData(new int[] { 1 }, 0, -1)]
+    public void SearchTest(int[] nums, int target, int expected)
+    {
+        var result = _sut.Search(nums, target);
+
+        Assert.Equal(expected, result);
+    }
+
+    #endregion
 }
