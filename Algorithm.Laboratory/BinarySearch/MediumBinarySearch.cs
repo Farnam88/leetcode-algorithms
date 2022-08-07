@@ -94,17 +94,18 @@ public class MediumBinarySearch
     public int Search(int[] nums, int target)
     {
         int left = 0, right = nums.Length - 1;
+
         while (left <= right)
         {
             var mid = (right + left) / 2;
-            if (nums[mid] == target)
-            {
-                return mid;
-            }
 
-            //Left sorted Portion
+            if (target == nums[mid])
+                return mid;
+
+            //Left Sorted Portion
             if (nums[mid] >= nums[left])
             {
+                //Not fit in left portion
                 if (target > nums[mid] || target < nums[left])
                     left = mid + 1;
                 else
@@ -113,6 +114,7 @@ public class MediumBinarySearch
             //Right sorted Portion
             else
             {
+                //Not fit in right portion
                 if (target < nums[mid] || target > nums[right])
                     right = mid - 1;
                 else
@@ -121,6 +123,44 @@ public class MediumBinarySearch
         }
 
         return -1;
+    }
+
+    #endregion
+
+    #region + FindMin
+
+    /// <summary>
+    /// 153. Find Minimum in Rotated Sorted Array
+    /// https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int FindMin(int[] nums)
+    {
+        int left = 0, right = nums.Length - 1, result = nums[left];
+
+        while (left <= right)
+        {
+            if (nums[left] < nums[right])
+            {
+                result = Math.Min(result, nums[left]);
+                break;
+            }
+
+            int middle = (right + left) / 2;
+            result = Math.Min(result, nums[middle]);
+            
+            if (nums[middle] >= nums[left])
+            {
+                left = middle + 1;
+            }
+            else
+            {
+                right = middle - 1;
+            }
+        }
+
+        return result;
     }
 
     #endregion
