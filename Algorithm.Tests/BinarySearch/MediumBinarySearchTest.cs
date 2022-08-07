@@ -112,4 +112,40 @@ public class MediumBinarySearchTest
     }
 
     #endregion
+
+    #region + TimeMapTest
+
+    [Fact]
+    public void TimeMapTest()
+    {
+        string[] sequence = new[] { "TimeMap", "set", "get", "get", "set", "get", "get" };
+        
+        TimeMap timeMap = new TimeMap();
+
+        // store the key "foo" and value "bar" along with timestamp = 1.
+        timeMap.Set("foo", "bar", 1);
+
+        // return "bar"
+        var result1 = timeMap.Get("foo", 1);
+
+        // return "bar", since there is no value corresponding to foo at timestamp 3 and timestamp 2, then the only value is at timestamp 1 is "bar".
+        var result2 = timeMap.Get("foo",
+            3);
+
+        // store the key "foo" and value "bar2" along with timestamp = 4.
+        timeMap.Set("foo", "bar2", 4);
+
+        // return "bar2"
+        var result3 = timeMap.Get("foo", 4);
+
+        // return "bar2"
+        var result4 = timeMap.Get("foo", 5);
+        
+        Assert.Equal("bar", result1);
+        Assert.Equal("bar", result2);
+        Assert.Equal("bar2", result3);
+        Assert.Equal("bar2", result4);
+    }
+
+    #endregion
 }
