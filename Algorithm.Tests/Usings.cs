@@ -5,3 +5,4 @@ global using Algorithm.Laboratory.TwoPointers;
 global using Algorithm.Laboratory.StackAlgo;
 global using FluentAssertions;
 global using Algorithm.Laboratory.BinarySearch;
+global using Algorithm.Laboratory.LinkedListAlgo;
