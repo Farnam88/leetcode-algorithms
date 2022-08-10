@@ -24,21 +24,35 @@ public class EasyLinkedListAlgo
         return prev;
     }
 
-    #region + ListNode class
+    #endregion
 
-    public class ListNode
+    #region + MergeTwoLists
+
+    /// <summary>
+    /// 21. Merge Two Sorted Lists
+    /// https://leetcode.com/problems/merge-two-sorted-lists/
+    /// </summary>
+    /// <param name="list1"></param>
+    /// <param name="list2"></param>
+    /// <returns></returns>
+    public ListNode MergeTwoLists(ListNode list1, ListNode list2)
     {
-        public int val;
-        public ListNode next;
+        if (list1 is null)
+            return list2;
+        if (list2 is null)
+            return list1;
 
-        public ListNode(int val = 0, ListNode next = null)
+        if (list1.val > list2.val)
         {
-            this.val = val;
-            this.next = next;
+            list2.next = MergeTwoLists(list1, list2.next);
+            return list2;
+        }
+        else
+        {
+            list1.next = MergeTwoLists(list1.next, list2);
+            return list1;
         }
     }
-
-    #endregion
 
     #endregion
 }
