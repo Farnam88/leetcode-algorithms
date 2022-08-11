@@ -44,4 +44,36 @@ public class MediumLinkedListAlgo
     }
 
     #endregion
+
+    #region MyRegion
+
+    /// <summary>
+    /// 19. Remove Nth Node From End of List
+    /// https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+    /// </summary>
+    /// <param name="head"></param>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public ListNode RemoveNthFromEnd(ListNode head, int n)
+    {
+        ListNode dummy = new (0, head), left = dummy, right = head;
+
+        while (n > 0 && right != null!)
+        {
+            right = right.next;
+            n--;
+        }
+
+        while (right != null)
+        {
+            left = left.next;
+            right = right.next;
+        }
+
+        left.next = left?.next.next;
+
+        return dummy.next;
+    }
+
+    #endregion
 }

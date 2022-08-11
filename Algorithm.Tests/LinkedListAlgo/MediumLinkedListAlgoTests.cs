@@ -36,4 +36,40 @@ public class MediumLinkedListAlgoTests
         };
 
     #endregion
+
+    #region + ReorderList
+
+    [Theory]
+    [MemberData(nameof(RemoveNthFromEndData))]
+    public void RemoveNthFromEnd(ListNode head, int n, ListNode expected)
+    {
+        _sut.RemoveNthFromEnd(head, n);
+
+        head.Should().BeEquivalentTo(expected);
+    }
+
+    public static IEnumerable<object[]> RemoveNthFromEndData =>
+        new List<object[]>
+        {
+            new object[]
+            {
+                new ListNode(1, new ListNode(5, new ListNode(7))),
+                1,
+                new ListNode(1, new ListNode(5))
+            },
+            new object[]
+            {
+                new ListNode(1, new ListNode(2)),
+                1,
+                new ListNode(1)
+            },
+            new object[]
+            {
+                new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))),
+                2,
+                new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(5)))),
+            }
+        };
+
+    #endregion
 }
