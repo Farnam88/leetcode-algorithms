@@ -126,21 +126,22 @@ public class MediumLinkedListAlgo
     /// <returns></returns>
     public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
     {
-        ListNode dummy = new ListNode();
+        ListNode dummy = new();
         var pointer = dummy;
         int carry = 0;
-        while (l1 != null || l2 != null || carry != 0)
+        while (l1 != null || l2 != null || carry > 0)
         {
-            int first = l1?.val ?? 0;
-            int second = l2?.val ?? 0;
+            var first = l1?.val ?? 0;
+            var second = l2?.val ?? 0;
 
             var val = first + second + carry;
             carry = val / 10;
             val %= 10;
+
             pointer.next = new ListNode(val);
             pointer = pointer.next;
-            l1 = l1 != null ? l1.next : null;
-            l2 = l2 != null ? l2.next : null;
+            l1 = l1?.next ?? null;
+            l2 = l2?.next ?? null;
         }
 
         return dummy.next;

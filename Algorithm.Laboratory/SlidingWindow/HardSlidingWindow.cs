@@ -16,15 +16,17 @@ public class HardSlidingWindow
     public string MinWindow(string s, string t)
     {
         if (t.Length > s.Length)
-            return string.Empty;
+            return String.Empty;
+
         var mapping = new Dictionary<char, int>();
         var window = new Dictionary<char, int>();
-        var a = new Stack<char>();
-        var b = a.Count(c => c == 'a');
+
         for (int i = 0; i < t.Length; i++)
         {
-            mapping.TryAdd(t[i], 0);
-            mapping[t[i]]++;
+            var current = t[i];
+
+            mapping.TryAdd(current, 0);
+            mapping[current]++;
         }
 
         int left = 0, length = int.MaxValue, have = 0, need = mapping.Count;
@@ -33,25 +35,30 @@ public class HardSlidingWindow
         for (int right = 0; right < s.Length; right++)
         {
             var current = s[right];
+
             window.TryAdd(current, 0);
             window[current]++;
 
-            if (mapping.ContainsKey(current) && window[current] == mapping[current])
+            if (mapping.ContainsKey(current) && mapping[current] == window[current])
                 have++;
+
             while (have == need)
             {
-                var windowCurrentLength = right - left + 1;
-                if (windowCurrentLength < length)
+                int currentWindowLength = right - left + 1;
+
+                if (currentWindowLength < length)
                 {
-                    length = windowCurrentLength;
+                    length = currentWindowLength;
                     range.Left = left;
                     range.Right = right + 1;
                 }
 
                 current = s[left];
                 window[current]--;
+
                 if (mapping.ContainsKey(current) && mapping[current] > window[current])
                     have--;
+
                 left++;
             }
         }
@@ -73,22 +80,21 @@ public class HardSlidingWindow
     /// <returns></returns>
     public int[] MaxSlidingWindow(int[] nums, int k)
     {
-        if (nums.Length == k)
-            return new[] { nums.Max() };
-        List<int> result = new();
-        LinkedList<int> window = new();
+        if (nums.Length <= k)
+            return new int[] { nums.Max() };
+        List<int> result = new List<int>();
+        LinkedList<int> window = new LinkedList<int>();
         int left = 0;
         for (int right = 0; right < nums.Length; right++)
         {
             while (window.Count > 0 && nums[window.Last.Value] < nums[right])
-            {
                 window.RemoveLast();
-            }
 
             window.AddLast(right);
 
             if (left > window.First.Value)
                 window.RemoveFirst();
+
             if (right + 1 >= k)
             {
                 result.Add(nums[window.First.Value]);

@@ -14,26 +14,28 @@ public class HardStackAlgo
     {
         if (heights.Length < 2)
             return heights[0];
+        
+        Stack<(int Index, int Height)> stack = new();
         int maxArea = -1;
 
-        Stack<(int Index, int Height)> stack = new();
         for (int right = 0; right < heights.Length; right++)
         {
-            int start = right;
+            int startIndex = right;
+            
             while (stack.Count > 0 && stack.Peek().Height > heights[right])
             {
-                var prevRect = stack.Pop();
-                maxArea = Math.Max(maxArea, (right - prevRect.Index) * prevRect.Height);
-                start = prevRect.Index;
+                var prevRec = stack.Pop();
+                maxArea = Math.Max(maxArea, (right - prevRec.Index) * prevRec.Height);
+                startIndex = prevRec.Index;
             }
 
-            stack.Push((start, heights[right]));
+            stack.Push((startIndex, heights[right]));
         }
 
         while (stack.Count > 0)
         {
             var rect = stack.Pop();
-            maxArea = Math.Max(maxArea, rect.Height * (heights.Length - rect.Index));
+            maxArea = Math.Max(maxArea, (heights.Length - rect.Index) * rect.Height);
         }
 
         return maxArea;
