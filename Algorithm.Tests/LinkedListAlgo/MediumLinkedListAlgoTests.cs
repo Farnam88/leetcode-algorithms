@@ -129,9 +129,14 @@ public class MediumLinkedListAlgoTests
 
     #region + FindDuplicateTest
 
-    public int FindDuplicateTest(int[] nums)
+    [Theory]
+    [InlineData(new int[] { 1, 3, 4, 2, 2 }, 2)]
+    [InlineData(new int[] { 3, 1, 3, 4, 2 }, 3)]
+    public void FindDuplicateTest(int[] nums, int expected)
     {
-        return 0;
+        var actual = _sut.FindDuplicate(nums);
+
+        Assert.Equal(expected, actual);
     }
 
     #endregion

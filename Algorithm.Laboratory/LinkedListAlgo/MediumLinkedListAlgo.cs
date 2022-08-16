@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP;
 
 namespace Algorithm.Laboratory.LinkedListAlgo;
 
@@ -148,12 +149,31 @@ public class MediumLinkedListAlgo
     }
 
     #endregion
-    
+
     #region + FindDuplicate
 
+    /// <summary>
+    /// 287. Find the Duplicate Number
+    /// https://leetcode.com/problems/find-the-duplicate-number/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
     public int FindDuplicate(int[] nums)
     {
-        return 0;
+        int Slow = 0, fast = 0, slow2 = 0;
+        do
+        {
+            Slow = nums[Slow];
+            fast = nums[nums[fast]];
+        } while (Slow != fast);
+
+        do
+        {
+            slow2 = nums[slow2];
+            Slow = nums[Slow];
+        } while (slow2 != Slow);
+
+        return Slow;
     }
 
     #endregion
