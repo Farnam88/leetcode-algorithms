@@ -126,7 +126,7 @@ public class MediumLinkedListAlgo
     /// <returns></returns>
     public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
     {
-        ListNode dummy = new();
+        ListNode dummy = new(0);
         var pointer = dummy;
         int carry = 0;
         while (l1 != null || l2 != null || carry > 0)
@@ -145,6 +145,15 @@ public class MediumLinkedListAlgo
         }
 
         return dummy.next;
+    }
+
+    #endregion
+    
+    #region + FindDuplicate
+
+    public int FindDuplicate(int[] nums)
+    {
+        return 0;
     }
 
     #endregion

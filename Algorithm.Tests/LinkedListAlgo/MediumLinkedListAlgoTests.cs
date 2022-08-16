@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace Algorithm.Tests.LinkedListAlgo;
+﻿namespace Algorithm.Tests.LinkedListAlgo;
 
 public class MediumLinkedListAlgoTests
 {
@@ -128,28 +126,13 @@ public class MediumLinkedListAlgoTests
         };
 
     #endregion
-}
 
-#region + CopyRandomListData
+    #region + FindDuplicateTest
 
-public class CopyRandomListData : IEnumerable<object[]>
-{
-    public IEnumerator<object[]> GetEnumerator()
+    public int FindDuplicateTest(int[] nums)
     {
-        Node node1 = new(7), node2 = new(13), node3 = new(11), node4 = new Node(10), node5 = new Node(1);
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node5;
-        node1.random = null!;
-        node2.random = node1;
-        node3.random = node5;
-        node4.random = node3;
-        node5.random = node1;
-        yield return new object[] { node1, node1 };
+        return 0;
     }
 
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    #endregion
 }
-
-#endregion

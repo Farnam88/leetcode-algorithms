@@ -37,11 +37,24 @@ public class EasyLinkedListAlgoTests
             },
             new object[]
             {
-                new ListNode(0,new ListNode(2)),
-                new ListNode(-5,new ListNode(0,new ListNode(5))),
-                new ListNode(-5,new ListNode(0,new ListNode(0,new ListNode(2,new ListNode(5)))))
+                new ListNode(0, new ListNode(2)),
+                new ListNode(-5, new ListNode(0, new ListNode(5))),
+                new ListNode(-5, new ListNode(0, new ListNode(0, new ListNode(2, new ListNode(5)))))
             }
         };
+
+    #endregion
+
+    #region + HasCycleTest
+
+    [Theory]
+    [ClassData(typeof(HasCycleData))]
+    public void HasCycleTest(ListNode head, bool expected)
+    {
+        var actual = _sut.HasCycle(head);
+
+        Assert.Equal(expected, actual);
+    }
 
     #endregion
 }
