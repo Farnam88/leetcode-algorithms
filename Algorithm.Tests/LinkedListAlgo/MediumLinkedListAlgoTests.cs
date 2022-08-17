@@ -140,4 +140,46 @@ public class MediumLinkedListAlgoTests
     }
 
     #endregion
+    
+    #region + LRUCacheTest
+
+    [Fact]
+    public void LruCacheTest()
+    {
+        LRUCache lRUCache = new LRUCache(2);
+
+        // cache is {1=1}
+        lRUCache.Put(1, 1);
+
+        // cache is {1=1, 2=2}
+        lRUCache.Put(2, 2);
+
+        // return 1
+        var res1 = lRUCache.Get(1);
+        Assert.Equal(1, res1);
+
+        // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+        lRUCache.Put(3, 3);
+
+        // returns -1 (not found)
+        var res2 = lRUCache.Get(2);
+        Assert.Equal(-1, res2);
+
+        // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+        lRUCache.Put(4, 4);
+
+        // return -1 (not found)
+        var res3 = lRUCache.Get(1);
+        Assert.Equal(-1, res3);
+
+        // return 3
+        var res4 = lRUCache.Get(3);
+        Assert.Equal(3, res4);
+
+        // return 4
+        var res5 = lRUCache.Get(4);
+        Assert.Equal(4, res5);
+    }
+
+    #endregion
 }

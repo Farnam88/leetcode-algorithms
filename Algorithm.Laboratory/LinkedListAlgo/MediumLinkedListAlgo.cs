@@ -104,13 +104,13 @@ public class MediumLinkedListAlgo
         current = head;
         while (current is not null)
         {
+            var copyOfCurrent = mapping[current];
             var next = current.next;
             var random = current.random;
-            var copyOfCurrent = mapping[current];
             copyOfCurrent.next = next != null ? mapping[next] : null;
             copyOfCurrent.random = random != null ? mapping[random] : null;
+            current = current.next;
         }
-
         return mapping[head];
     }
 
