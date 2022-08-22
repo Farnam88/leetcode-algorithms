@@ -12,7 +12,7 @@ public class HardLinkedListAlgo
     /// <returns></returns>
     public ListNode MergeKLists(ListNode[] lists)
     {
-        if (lists is null || lists.Length == 1)
+        if (lists is null || lists.Length == 0)
             return null!;
 
         while (lists.Length > 1)
