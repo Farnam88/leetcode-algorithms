@@ -35,4 +35,33 @@ public class HardLinkedListAlgoTests
     };
 
     #endregion
+
+    #region +
+
+    [Theory]
+    [MemberData(nameof(ReverseKGroupData))]
+    public void ReverseKGroup(ListNode head, int k, ListNode expected)
+    {
+        var actual = _sut.ReverseKGroup(head, k);
+
+        actual.Should().BeEquivalentTo(expected);
+    }
+
+    public static IEnumerable<object[]> ReverseKGroupData => new List<object[]>
+    {
+        new object[]
+        {
+            new ListNode(1, new(2, new(3, new(4, new(5))))),
+            2,
+            new ListNode(2, new(1, new(4, new(3, new(5))))),
+        },
+        new object[]
+        {
+            new ListNode(1, new(2, new(3, new(4, new(5))))),
+            3,
+            new ListNode(3, new(2, new(1, new(4, new(5))))),
+        },
+    };
+
+    #endregion
 }
