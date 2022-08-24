@@ -15,34 +15,32 @@ public class MediumLinkedListAlgo
     public void ReorderList(ListNode head)
     {
         ListNode slow = head, fast = head.next;
-
-        while (slow != null! && fast?.next != null)
+        while (slow != null && fast?.next != null)
         {
             slow = slow.next;
-            fast = fast.next.next;
+            fast = fast.next?.next;
         }
 
-        ListNode rightPortion = slow!.next, prev = null!;
-        slow!.next = null;
-
+        var rightPortion = slow?.next;
+        slow.next = null;
+        ListNode prev = null!;
         while (rightPortion != null)
         {
-            var temp = rightPortion.next;
+            var next = rightPortion.next;
             rightPortion.next = prev;
             prev = rightPortion;
-            rightPortion = temp;
+            rightPortion = next;
         }
 
-        ListNode leftPortion = head;
+        var leftPortion = head;
         rightPortion = prev;
-
-        while (rightPortion != null)
+        while (rightPortion is not null)
         {
             ListNode tempL = leftPortion.next, tempR = rightPortion.next;
             leftPortion.next = rightPortion;
             rightPortion.next = tempL;
-            rightPortion = tempR;
             leftPortion = tempL;
+            rightPortion = tempR;
         }
     }
 
@@ -59,11 +57,10 @@ public class MediumLinkedListAlgo
     /// <returns></returns>
     public ListNode RemoveNthFromEnd(ListNode head, int n)
     {
-        ListNode dummy = new ListNode(0, head), left = dummy, right = head;
-
-        while (n > 0 && right != null)
+        ListNode dummy = new(0, head), left = dummy, right = head;
+        while (n > 0 && right?.next is not null)
         {
-            right = right.next;
+            right = right?.next;
             n--;
         }
 
@@ -73,7 +70,7 @@ public class MediumLinkedListAlgo
             right = right.next;
         }
 
-        left.next = left?.next.next;
+        left.next = left.next?.next;
         return dummy.next;
     }
 
@@ -111,6 +108,7 @@ public class MediumLinkedListAlgo
             copyOfCurrent.random = random != null ? mapping[random] : null;
             current = current.next;
         }
+
         return mapping[head];
     }
 

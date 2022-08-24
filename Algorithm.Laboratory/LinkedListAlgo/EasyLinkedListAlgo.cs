@@ -12,13 +12,13 @@ public class EasyLinkedListAlgo
     /// <returns></returns>
     public ListNode ReverseList(ListNode head)
     {
-        ListNode current = head, prev = default!;
-        while (current is not null)
+        ListNode prev = null, curren = head;
+        while (curren is not null)
         {
-            var next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+            var next = curren.next;
+            curren.next = prev;
+            prev = curren;
+            curren = next;
         }
 
         return prev;
@@ -41,7 +41,6 @@ public class EasyLinkedListAlgo
             return list2;
         if (list2 is null)
             return list1;
-
         if (list1.val > list2.val)
         {
             list2.next = MergeTwoLists(list1, list2.next);
@@ -52,6 +51,45 @@ public class EasyLinkedListAlgo
             list1.next = MergeTwoLists(list1.next, list2);
             return list1;
         }
+    }
+    /// <summary>
+    /// 21. Merge Two Sorted Lists
+    /// https://leetcode.com/problems/merge-two-sorted-lists/
+    /// </summary>
+    /// <param name="list1"></param>
+    /// <param name="list2"></param>
+    /// <returns></returns>
+    public ListNode MergeTwoLists2(ListNode list1, ListNode list2)
+    {
+        ListNode dummy = new ListNode();
+        var current = dummy;
+        while (list1 is not null || list2 is not null)
+        {
+            if (list1 is null)
+            {
+                current.next = list2;
+                break;
+            }
+
+            if (list2 is null)
+            {
+                current.next = list1;
+                break;
+            }
+            if (list1.val > list2.val)
+            {
+                current.next = list2;
+                list2 = list2.next;
+            }
+            else
+            {
+                current.next = list1;
+                list1 = list1.next;
+            }
+            current = current.next;
+        }
+
+        return dummy.next;
     }
 
     #endregion
