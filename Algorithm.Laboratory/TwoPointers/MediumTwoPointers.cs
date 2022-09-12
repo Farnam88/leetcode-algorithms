@@ -13,12 +13,11 @@ public class MediumTwoPointers
     /// <returns></returns>
     public int[] TwoSum(int[] numbers, int target)
     {
-        int[] result = new int[2];
-        int left = 0;
-        int right = numbers.Length - 1;
+        var result = new int[2];
+        int left = 0, right = numbers.Length - 1;
         while (left < right)
         {
-            int currentSum = numbers[left] + numbers[right];
+            var currentSum = numbers[left] + numbers[right];
             if (currentSum > target)
                 right--;
             if (currentSum < target)
@@ -27,7 +26,7 @@ public class MediumTwoPointers
             {
                 result[0] = left + 1;
                 result[1] = right + 1;
-                return result;
+                break;
             }
         }
 
@@ -48,23 +47,22 @@ public class MediumTwoPointers
     {
         var result = new List<IList<int>>();
         Array.Sort(nums);
-        for (int i = 0; i < nums.Length; i++)
+        for (int current = 0; current < nums.Length; current++)
         {
-            var currentValue = nums[i];
-            if (i > 0 && currentValue == nums[i - 1])
+            var value = nums[current];
+            if (current > 0 && value == nums[current - 1])
                 continue;
-            int left = i + 1;
-            int right = nums.Length - 1;
+            int left = current + 1, right = nums.Length - 1;
             while (left < right)
             {
-                var currentSum = currentValue + nums[left] + nums[right];
+                var currentSum = value + nums[left] + nums[right];
                 if (currentSum > 0)
                     right--;
                 if (currentSum < 0)
                     left++;
                 if (currentSum == 0)
                 {
-                    result.Add(new List<int> { currentValue, nums[left], nums[right] });
+                    result.Add(new List<int> { value, nums[left], nums[right] });
                     left++;
                     while (left < right && nums[left] == nums[left - 1])
                         left++;

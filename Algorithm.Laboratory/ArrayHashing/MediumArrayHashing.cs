@@ -14,22 +14,21 @@ public class MediumArrayHashing
     /// <returns></returns>
     public IList<IList<string>> GroupAnagrams(string[] strs)
     {
-        var result = new Dictionary<string, IList<string>>();
-
+        Dictionary<string, IList<string>> mapping = new();
         for (int i = 0; i < strs.Length; i++)
         {
-            var keyChar = new char[26];
+            char[] chars = new char[26];
             for (int j = 0; j < strs[i].Length; j++)
             {
-                keyChar[strs[i][j] - 'a']++;
+                chars[strs[i][j] - 'a']++;
             }
 
-            var key = new string(keyChar);
-            result.TryAdd(key, new List<string>());
-            result[key].Add(strs[i]);
+            var key = new string(chars);
+            mapping.TryAdd(key, new List<string>());
+            mapping[key].Add(strs[i]);
         }
 
-        return result.Values.ToList();
+        return mapping.Values.ToList();
     }
 
     #endregion
@@ -45,33 +44,32 @@ public class MediumArrayHashing
     /// <returns></returns>
     public int[] TopKFrequent(int[] nums, int k)
     {
-        var grouping = new Dictionary<int, int>();
+        Dictionary<int, int> mapping = new();
         var result = new int[k];
-        foreach (var item in nums)
+        for (int i = 0; i < nums.Length; i++)
         {
-            grouping.TryAdd(item, 0);
-            grouping[item]++;
+            mapping.TryAdd(nums[i], 0);
+            mapping[nums[i]]++;
         }
 
         var bucket = new List<int>[nums.Length + 1];
-        foreach (var item in grouping)
+        foreach (var item in mapping)
         {
             var key = item.Value;
             var value = item.Key;
-            if (bucket[key] is null)
-                bucket[key] = new List<int>();
+            bucket[key] ??= new List<int>();
             bucket[key].Add(value);
         }
 
-        var arrIndex = 0;
-        for (int i = bucket.Length - 1; i >= 0 && arrIndex < k; i--)
+        int indexArr = 0;
+        for (int i = bucket.Length - 1; i >= 0 && indexArr < k; i--)
         {
             if (bucket[i] is not null)
             {
-                for (int j = 0; j < bucket[i].Count && arrIndex < k; j++)
+                for (int j = 0; j < bucket[i].Count && indexArr < k; j++)
                 {
-                    result[arrIndex] = bucket[i][j];
-                    arrIndex++;
+                    result[indexArr] = bucket[i][j];
+                    indexArr++;
                 }
             }
         }
@@ -91,18 +89,15 @@ public class MediumArrayHashing
     /// <returns></returns>
     public int[] ProductExceptSelf(int[] nums)
     {
-        var length = nums.Length;
-        var result = new int[length];
+        int left = 1, right = 1, revIndex = nums.Length - 1;
+        int[] result = new int[nums.Length];
         Array.Fill(result, 1);
-        var pre = 1;
-        var post = 1;
-        var revIndex = length - 1;
         for (int i = 0; i < nums.Length; i++)
         {
-            result[i] *= pre;
-            pre *= nums[i];
-            result[revIndex - i] *= post;
-            post *= nums[revIndex - i];
+            result[i] *= left;
+            left *= nums[i];
+            result[revIndex - i] *= right;
+            right *= nums[revIndex - i];
         }
 
         return result;
@@ -120,32 +115,29 @@ public class MediumArrayHashing
     /// <returns></returns>
     public bool IsValidSudoku(char[][] board)
     {
-        var col = new Dictionary<int, HashSet<char>>(9);
-        var row = new Dictionary<int, HashSet<char>>(9);
-        var qube = new Dictionary<int, HashSet<char>>(9);
-
-        for (int i = 0; i < 9; i++)
+        Dictionary<int, HashSet<char>> cols = new(), rows = new(), qubes = new();
+        for (int row = 0; row < 9; row++)
         {
-            row.TryAdd(i, new HashSet<char>());
-
-            for (int j = 0; j < 9; j++)
+            rows.TryAdd(row, new HashSet<char>());
+            for (int col = 0; col < 9; col++)
             {
-                var value = board[i][j];
-                if (value == '.')
+                var currentPoint = board[row][col];
+                if (currentPoint == '.')
                     continue;
-                int qubeKey = (i / 3) * 3 + (j / 3);
 
-                col.TryAdd(j, new HashSet<char>());
+                int qube = (row / 3) * 3 + (col / 3);
 
-                qube.TryAdd(qubeKey, new HashSet<char>());
+                cols.TryAdd(col, new HashSet<char>());
+                qubes.TryAdd(qube, new HashSet<char>());
 
-                if (col[j].Contains(value) ||
-                    row[i].Contains(value) ||
-                    qube[qubeKey].Contains(value))
+                if (cols[col].Contains(currentPoint) ||
+                    rows[row].Contains(currentPoint) ||
+                    qubes[qube].Contains(currentPoint))
                     return false;
-                col[j].Add(value);
-                row[i].Add(value);
-                qube[qubeKey].Add(value);
+
+                cols[col].Add(currentPoint);
+                rows[row].Add(currentPoint);
+                qubes[qube].Add(currentPoint);
             }
         }
 
@@ -211,16 +203,16 @@ public class MediumArrayHashing
     /// <returns></returns>
     public int LongestConsecutive(int[] nums)
     {
-        var input = new HashSet<int>(nums);
+        HashSet<int> input = new(nums);
         int result = 0;
         foreach (var item in input)
         {
-            if (nums.Contains(item - 1))
+            if (input.Contains(item - 1))
                 continue;
             int j = 1;
             while (input.Contains(item + j))
                 j++;
-            result = j > result ? j : result;
+            result = result > j ? result : j;
         }
 
         return result;
