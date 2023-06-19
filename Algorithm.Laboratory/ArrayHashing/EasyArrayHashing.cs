@@ -78,16 +78,16 @@ public class EasyArrayHashing
     /// <returns></returns>
     public int[] TwoSum(int[] nums, int target)
     {
-        for (int i = 0; i < nums.Length; i++)
+        for (int slow = 0; slow < nums.Length; slow++)
         {
-            for (int j = i + 1; j < nums.Length; j++)
+            for (int fast = slow + 1; fast < nums.Length; fast++)
             {
-                if (nums[i] + nums[j] == target)
-                    return new[] { i, j };
+                if (nums[slow] + nums[fast] == target)
+                    return new[] {slow, fast};
             }
         }
 
-        return new int[] { };
+        return Array.Empty<int>();
     }
 
     #endregion

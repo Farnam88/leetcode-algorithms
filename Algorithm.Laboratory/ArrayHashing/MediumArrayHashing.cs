@@ -14,7 +14,7 @@ public class MediumArrayHashing
     /// <returns></returns>
     public IList<IList<string>> GroupAnagrams(string[] strs)
     {
-        Dictionary<string, IList<string>> mapping = new();
+        Dictionary<string, IList<string>> hashMap = new();
         for (int i = 0; i < strs.Length; i++)
         {
             char[] chars = new char[26];
@@ -24,11 +24,11 @@ public class MediumArrayHashing
             }
 
             var key = new string(chars);
-            mapping.TryAdd(key, new List<string>());
-            mapping[key].Add(strs[i]);
+            hashMap.TryAdd(key, new List<string>());
+            hashMap[key].Add(strs[i]);
         }
 
-        return mapping.Values.ToList();
+        return hashMap.Values.ToList();
     }
 
     #endregion
