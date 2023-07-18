@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq.Expressions;
+using System.Text;
 
 namespace Algorithm.Laboratory.ArrayHashing;
 
@@ -14,21 +15,21 @@ public class MediumArrayHashing
     /// <returns></returns>
     public IList<IList<string>> GroupAnagrams(string[] strs)
     {
-        Dictionary<string, IList<string>> hashMap = new();
+        Dictionary<string, IList<string>> mapping = new();
         for (int i = 0; i < strs.Length; i++)
         {
-            char[] chars = new char[26];
+            char[] charArr = new char[26];
             for (int j = 0; j < strs[i].Length; j++)
             {
-                chars[strs[i][j] - 'a']++;
+                charArr[strs[i][j] - 'a']++;
             }
 
-            var key = new string(chars);
-            hashMap.TryAdd(key, new List<string>());
-            hashMap[key].Add(strs[i]);
+            var key = new string(charArr);
+            mapping.TryAdd(key, new List<string>());
+            mapping[key].Add(strs[i]);
         }
 
-        return hashMap.Values.ToList();
+        return mapping.Values.ToList();
     }
 
     #endregion
@@ -44,16 +45,15 @@ public class MediumArrayHashing
     /// <returns></returns>
     public int[] TopKFrequent(int[] nums, int k)
     {
-        Dictionary<int, int> mapping = new();
-        var result = new int[k];
+        Dictionary<int, int> countMap = new();
         for (int i = 0; i < nums.Length; i++)
         {
-            mapping.TryAdd(nums[i], 0);
-            mapping[nums[i]]++;
+            countMap.TryAdd(nums[i], 0);
+            countMap[nums[i]]++;
         }
 
         var bucket = new List<int>[nums.Length + 1];
-        foreach (var item in mapping)
+        foreach (var item in countMap)
         {
             var key = item.Value;
             var value = item.Key;
@@ -61,16 +61,16 @@ public class MediumArrayHashing
             bucket[key].Add(value);
         }
 
-        int indexArr = 0;
-        for (int i = bucket.Length - 1; i >= 0 && indexArr < k; i--)
+        var result = new int[k];
+        var qt = 0;
+        for (int i = bucket.Length - 1; i >= 0 && qt < k; i--)
         {
-            if (bucket[i] is not null)
+            if (bucket[i] is null)
+                continue;
+            for (int j = 0; j < bucket[i].Count && qt < k; j++)
             {
-                for (int j = 0; j < bucket[i].Count && indexArr < k; j++)
-                {
-                    result[indexArr] = bucket[i][j];
-                    indexArr++;
-                }
+                result[qt] = bucket[i][j];
+                qt++;
             }
         }
 
@@ -90,7 +90,7 @@ public class MediumArrayHashing
     public int[] ProductExceptSelf(int[] nums)
     {
         int left = 1, right = 1, revIndex = nums.Length - 1;
-        int[] result = new int[nums.Length];
+        var result = new int[nums.Length];
         Array.Fill(result, 1);
         for (int i = 0; i < nums.Length; i++)
         {
