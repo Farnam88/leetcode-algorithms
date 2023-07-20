@@ -115,29 +115,26 @@ public class MediumArrayHashing
     /// <returns></returns>
     public bool IsValidSudoku(char[][] board)
     {
-        Dictionary<int, HashSet<char>> cols = new(), rows = new(), qubes = new();
-        for (int row = 0; row < 9; row++)
+        Dictionary<int, HashSet<char>> col = new(), row = new();
+        Dictionary<(int, int), HashSet<char>> square = new();
+        for (int i = 0; i < 9; i++)
         {
-            rows.TryAdd(row, new HashSet<char>());
-            for (int col = 0; col < 9; col++)
+            row.TryAdd(i, new HashSet<char>());
+            for (int j = 0; j < 9; j++)
             {
-                var currentPoint = board[row][col];
-                if (currentPoint == '.')
+                var currentCharacter = board[i][j];
+                (int, int) squareKey = (i / 3, j / 3);
+                square.TryAdd(squareKey, new HashSet<char>());
+                col.TryAdd(j, new HashSet<char>());
+                if (currentCharacter == '.')
                     continue;
-
-                int qube = (row / 3) * 3 + (col / 3);
-
-                cols.TryAdd(col, new HashSet<char>());
-                qubes.TryAdd(qube, new HashSet<char>());
-
-                if (cols[col].Contains(currentPoint) ||
-                    rows[row].Contains(currentPoint) ||
-                    qubes[qube].Contains(currentPoint))
+                if (row[i].Contains(currentCharacter) ||
+                    col[j].Contains(currentCharacter) ||
+                    square[squareKey].Contains(currentCharacter))
                     return false;
-
-                cols[col].Add(currentPoint);
-                rows[row].Add(currentPoint);
-                qubes[qube].Add(currentPoint);
+                row[i].Add(currentCharacter);
+                col[j].Add(currentCharacter);
+                square[squareKey].Add(currentCharacter);
             }
         }
 
