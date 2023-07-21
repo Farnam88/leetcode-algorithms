@@ -115,29 +115,29 @@ public class MediumArrayHashing
     /// <returns></returns>
     public bool IsValidSudoku(char[][] board)
     {
-        Dictionary<int, HashSet<char>> col = new(), row = new();
-        Dictionary<(int, int), HashSet<char>> square = new();
-        for (int i = 0; i < 9; i++)
+        Dictionary<int, List<char>> rows = new(), cols = new();
+        Dictionary<(int, int), List<char>> box = new();
+        for (int r = 0; r < 9; r++)
         {
-            row.TryAdd(i, new HashSet<char>());
-            for (int j = 0; j < 9; j++)
+            rows.TryAdd(r, new List<char>());
+            for (int c = 0; c < 9; c++)
             {
-                var currentCharacter = board[i][j];
-                (int, int) squareKey = (i / 3, j / 3);
-                square.TryAdd(squareKey, new HashSet<char>());
-                col.TryAdd(j, new HashSet<char>());
-                if (currentCharacter == '.')
+                var boxKey = (r / 3, c / 3);
+                cols.TryAdd(c, new List<char>());
+                box.TryAdd(boxKey, new List<char>());
+                var currentChar = board[r][c];
+                if (currentChar == '.')
                     continue;
-                if (row[i].Contains(currentCharacter) ||
-                    col[j].Contains(currentCharacter) ||
-                    square[squareKey].Contains(currentCharacter))
+                if (rows[r].Contains(currentChar) ||
+                    cols[c].Contains(currentChar) ||
+                    box[boxKey].Contains(currentChar))
                     return false;
-                row[i].Add(currentCharacter);
-                col[j].Add(currentCharacter);
-                square[squareKey].Add(currentCharacter);
+                rows[r].Add(currentChar);
+                cols[c].Add(currentChar);
+                box[boxKey].Add(currentChar);
             }
-        }
 
+        }
         return true;
     }
 
