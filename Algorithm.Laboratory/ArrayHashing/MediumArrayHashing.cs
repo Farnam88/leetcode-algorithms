@@ -89,15 +89,15 @@ public class MediumArrayHashing
     /// <returns></returns>
     public int[] ProductExceptSelf(int[] nums)
     {
-        int left = 1, right = 1, revIndex = nums.Length - 1;
+        int left = 1, right = 1, reverseIndex = nums.Length - 1;
         var result = new int[nums.Length];
         Array.Fill(result, 1);
         for (int i = 0; i < nums.Length; i++)
         {
             result[i] *= left;
             left *= nums[i];
-            result[revIndex - i] *= right;
-            right *= nums[revIndex - i];
+            result[reverseIndex - i] *= right;
+            right *= nums[reverseIndex - i];
         }
 
         return result;
@@ -136,8 +136,8 @@ public class MediumArrayHashing
                 cols[c].Add(currentChar);
                 box[boxKey].Add(currentChar);
             }
-
         }
+
         return true;
     }
 
@@ -200,19 +200,23 @@ public class MediumArrayHashing
     /// <returns></returns>
     public int LongestConsecutive(int[] nums)
     {
-        HashSet<int> input = new(nums);
-        int result = 0;
-        foreach (var item in input)
+        HashSet<int> numSet = new(nums);
+        int longest = 0;
+        foreach (var n in nums)
         {
-            if (input.Contains(item - 1))
-                continue;
-            int j = 1;
-            while (input.Contains(item + j))
-                j++;
-            result = result > j ? result : j;
+            if (!nums.Contains(n - 1))
+            {
+                int length = 0;
+                while (numSet.Contains(n + length))
+                {
+                    length++;
+                }
+
+                longest = Math.Max(length, longest);
+            }
         }
 
-        return result;
+        return longest;
     }
 
     #endregion
