@@ -200,19 +200,20 @@ public class MediumArrayHashing
     /// <returns></returns>
     public int LongestConsecutive(int[] nums)
     {
-        HashSet<int> numSet = new(nums);
+        HashSet<int> numsSet = new(nums);
         int longest = 0;
-        foreach (var n in nums)
+        foreach (var item in numsSet)
         {
-            if (!nums.Contains(n - 1))
+            if (!numsSet.Contains(item - 1))
             {
-                int length = 0;
-                while (numSet.Contains(n + length))
+                int lenght = 0;
+                while (numsSet.Contains(item+lenght))
                 {
-                    length++;
+                    lenght++;
                 }
 
-                longest = Math.Max(length, longest);
+                longest = Math.Max(longest, lenght);
+
             }
         }
 
