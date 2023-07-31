@@ -15,7 +15,7 @@ public class MediumTwoPointers
     {
         var result = new int[2];
         int left = 0, right = numbers.Length - 1;
-        while (left < right)
+        while (right > left)
         {
             var currentSum = numbers[left] + numbers[right];
             if (currentSum > target)
@@ -62,7 +62,7 @@ public class MediumTwoPointers
                     left++;
                 if (currentSum == 0)
                 {
-                    result.Add(new List<int> { value, nums[left], nums[right] });
+                    result.Add(new List<int> {value, nums[left], nums[right]});
                     left++;
                     while (left < right && nums[left] == nums[left - 1])
                         left++;
