@@ -42,27 +42,27 @@ public class MediumTwoPointers
     /// https://leetcode.com/problems/3sum/
     /// </summary>
     /// <param name="nums"></param>
-    /// <returns></returns>
+    /// <returns>List of list of int</returns>
     public IList<IList<int>> ThreeSum(int[] nums)
     {
         var result = new List<IList<int>>();
         Array.Sort(nums);
-        for (int current = 0; current < nums.Length; current++)
+        for (int i = 0; i < nums.Length; i++)
         {
-            var value = nums[current];
-            if (current > 0 && value == nums[current - 1])
+            var val = nums[i];
+            if (i > 0 && val == nums[i - 1])
                 continue;
-            int left = current + 1, right = nums.Length - 1;
+            int left = i + 1, right = nums.Length - 1;
             while (left < right)
             {
-                var currentSum = value + nums[left] + nums[right];
+                var currentSum = val + nums[left] + nums[right];
                 if (currentSum > 0)
                     right--;
                 if (currentSum < 0)
                     left++;
                 if (currentSum == 0)
                 {
-                    result.Add(new List<int> {value, nums[left], nums[right]});
+                    result.Add(new List<int>() {val, nums[left], nums[right]});
                     left++;
                     while (left < right && nums[left] == nums[left - 1])
                         left++;
