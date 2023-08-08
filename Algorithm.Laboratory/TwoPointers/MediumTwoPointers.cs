@@ -46,29 +46,32 @@ public class MediumTwoPointers
     public IList<IList<int>> ThreeSum(int[] nums)
     {
         var result = new List<IList<int>>();
+
         Array.Sort(nums);
-        for (int i = 0; i < nums.Length; i++)
+
+        for (int current = 0; current < nums.Length; current++)
         {
-            var val = nums[i];
-            if (i > 0 && val == nums[i - 1])
+            var beginValue = nums[current];
+            if (current > 0 && beginValue == nums[current - 1])
                 continue;
-            int left = i + 1, right = nums.Length - 1;
-            while (left < right)
+            int left = current + 1, right = nums.Length - 1;
+            while (right > left)
             {
-                var currentSum = val + nums[left] + nums[right];
-                if (currentSum > 0)
+                var sum = beginValue + nums[left] + nums[right];
+                if (sum > 0)
                     right--;
-                if (currentSum < 0)
+                if (sum < 0)
                     left++;
-                if (currentSum == 0)
+                if (sum == 0)
                 {
-                    result.Add(new List<int>() {val, nums[left], nums[right]});
+                    result.Add(new List<int>() {beginValue, nums[left], nums[right]});
                     left++;
-                    while (left < right && nums[left] == nums[left - 1])
+                    while (right > left && nums[left] == nums[left - 1])
                         left++;
                 }
             }
         }
+
 
         return result;
     }
