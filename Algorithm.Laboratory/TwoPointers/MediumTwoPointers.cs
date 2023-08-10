@@ -88,20 +88,20 @@ public class MediumTwoPointers
     /// <returns></returns>
     public int MaxArea(int[] height)
     {
-        int left = 0;
-        int right = height.Length - 1;
-        int maxVol = 0;
-        while (left < right)
+        int left = 0, right = height.Length - 1;
+        int maxResult = 0;
+
+        while (right > left)
         {
-            var vol = Math.Min(height[left], height[right]) * (right - left);
-            maxVol = Math.Max(maxVol, vol);
+            var area = Math.Min(height[left], height[right]) * (right - left);
+            maxResult = Math.Max(maxResult, area);
             if (height[left] < height[right])
                 left++;
             else
                 right--;
         }
 
-        return maxVol;
+        return maxResult;
     }
 
     #endregion
