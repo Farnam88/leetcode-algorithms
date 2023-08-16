@@ -14,11 +14,14 @@ public class HardTwoPointers
     {
         if (height.Length <= 1)
             return 0;
-        int result = 0, left = 0, right = height.Length - 1, maxLeft = height[left], maxRight = height[right];
-
-        while (left < right)
+        int result = 0,
+            left = 0,
+            right = height.Length - 1,
+            maxLeft = height[left],
+            maxRight = height[right];
+        while (right > left)
         {
-            if (maxLeft <= maxRight)
+            if (maxRight > maxLeft)
             {
                 left++;
                 maxLeft = Math.Max(maxLeft, height[left]);
