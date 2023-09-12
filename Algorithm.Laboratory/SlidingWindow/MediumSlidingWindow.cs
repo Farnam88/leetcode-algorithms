@@ -14,22 +14,20 @@ public class MediumSlidingWindow
     {
         if (s.Length <= 1)
             return s.Length;
-        int left = 0, maxLenght = -1;
-        Queue<int> queue = new Queue<int>();
-
-        for (int right = 0; right < s.Length; right++)
+        int left = 0, longest = -1;
+        Queue<int> queue = new();
+        for (int index = 0; index < s.Length; index++)
         {
-            while (queue.Contains(s[right]))
+            while (queue.Contains(s[index]))
             {
                 queue.Dequeue();
                 left++;
             }
-
-            queue.Enqueue(s[right]);
-            maxLenght = Math.Max((right - left + 1), maxLenght);
+            queue.Enqueue(s[index]);
+            longest = Math.Max(longest, index - left + 1);
         }
 
-        return maxLenght;
+        return longest;
     }
 
     #endregion
@@ -86,24 +84,24 @@ public class MediumSlidingWindow
         if (s1.Length > s2.Length)
             return false;
         char[] strChar = new char[26];
-        int left = 0, right = 0;
         for (int i = 0; i < s1.Length; i++)
         {
             strChar[s1[i] - 'a']++;
         }
 
         var s1Str = new string(strChar);
-        while (right < s2.Length)
+        int left = 0, right = 0;
+        while (right<s2.Length)
         {
             strChar = new char[26];
-            while (right < s1.Length + left && right < s2.Length)
+            while (right<s1.Length + left && right<s2.Length )
             {
                 strChar[s2[right] - 'a']++;
                 right++;
             }
 
             var currentStr = new string(strChar);
-            if (s1Str == currentStr)
+            if (currentStr == s1Str)
                 return true;
             left++;
             right = left;
@@ -141,7 +139,7 @@ public class MediumSlidingWindow
         {
             if (matches == 26)
                 return true;
-            
+
             var currentIndex = s2[right] - 'a';
             premChars[currentIndex]++;
 
