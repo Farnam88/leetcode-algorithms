@@ -16,54 +16,47 @@ public class HardSlidingWindow
     public string MinWindow(string s, string t)
     {
         if (t.Length > s.Length)
-            return String.Empty;
-
-        var mapping = new Dictionary<char, int>();
-        var window = new Dictionary<char, int>();
-
-        for (int i = 0; i < t.Length; i++)
+            return string.Empty;
+        if (t == "")
+            return string.Empty;
+        Dictionary<char, int> targetMapping = new(), currentWindow = new();
+        foreach (var item in t)
         {
-            var current = t[i];
-
-            mapping.TryAdd(current, 0);
-            mapping[current]++;
+            targetMapping.TryAdd(item, 0);
+            targetMapping[item]++;
         }
 
-        int left = 0, length = int.MaxValue, have = 0, need = mapping.Count;
+        int left = 0, minLength = int.MaxValue, have = 0, need = targetMapping.Count;
         (int Left, int Right) range = new();
+
 
         for (int right = 0; right < s.Length; right++)
         {
-            var current = s[right];
+            var currentChar = s[right];
+            currentWindow.TryAdd(currentChar, 0);
+            currentWindow[currentChar]++;
 
-            window.TryAdd(current, 0);
-            window[current]++;
-
-            if (mapping.ContainsKey(current) && mapping[current] == window[current])
+            if (targetMapping.ContainsKey(currentChar) && targetMapping[currentChar] == currentWindow[currentChar])
                 have++;
-
             while (have == need)
             {
-                int currentWindowLength = right - left + 1;
-
-                if (currentWindowLength < length)
+                int currentLength = right - left + 1;
+                if (currentLength < minLength)
                 {
-                    length = currentWindowLength;
+                    minLength = currentLength;
                     range.Left = left;
                     range.Right = right + 1;
                 }
 
-                current = s[left];
-                window[current]--;
-
-                if (mapping.ContainsKey(current) && mapping[current] > window[current])
+                currentChar = s[left];
+                currentWindow[currentChar]--;
+                if (targetMapping.ContainsKey(currentChar) && targetMapping[currentChar] > currentWindow[currentChar])
                     have--;
-
                 left++;
             }
         }
 
-        return length != int.MaxValue ? s[range.Left..range.Right] : string.Empty;
+        return minLength != int.MinValue ? s[range.Left..range.Right] : string.Empty;
     }
 
     #endregion
@@ -80,24 +73,23 @@ public class HardSlidingWindow
     /// <returns></returns>
     public int[] MaxSlidingWindow(int[] nums, int k)
     {
-        if (nums.Length <= k)
-            return new int[] { nums.Max() };
-        List<int> result = new List<int>();
-        LinkedList<int> window = new LinkedList<int>();
+        if (nums.Length < k)
+            return new[] {nums.Max()};
+        List<int> result = new();
+        LinkedList<int> winOfIndices = new();
         int left = 0;
         for (int right = 0; right < nums.Length; right++)
         {
-            while (window.Count > 0 && nums[window.Last.Value] < nums[right])
-                window.RemoveLast();
+            while (winOfIndices.Count > 0 && nums[winOfIndices.Last!.Value] < nums[right])
+                winOfIndices.RemoveLast();
+            winOfIndices.AddLast(right);
 
-            window.AddLast(right);
-
-            if (left > window.First.Value)
-                window.RemoveFirst();
+            if (left > winOfIndices.First!.Value)
+                winOfIndices.RemoveFirst();
 
             if (right + 1 >= k)
             {
-                result.Add(nums[window.First.Value]);
+                result.Add(nums[winOfIndices.First.Value]);
                 left++;
             }
         }
