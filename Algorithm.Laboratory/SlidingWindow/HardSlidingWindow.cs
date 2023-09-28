@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Algorithm.Laboratory.SlidingWindow;
+﻿namespace Algorithm.Laboratory.SlidingWindow;
 
 public class HardSlidingWindow
 {

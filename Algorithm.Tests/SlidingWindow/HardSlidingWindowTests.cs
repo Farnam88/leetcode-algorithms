@@ -17,6 +17,7 @@ public class HardSlidingWindowTests
     [InlineData("a", "aa", "")]
     [InlineData("ab", "a", "a")]
     [InlineData("ab", "b", "b")]
+    [InlineData("dfghabaca", "aaa", "abaca")]
     public void MinWindowTest(string s, string t, string expected)
     {
         var result = _sut.MinWindow(s, t);

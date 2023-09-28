@@ -1,4 +1,6 @@
-﻿namespace Algorithm.Laboratory.StackAlgo;
+﻿using Microsoft.VisualBasic;
+
+namespace Algorithm.Laboratory.StackAlgo;
 
 public class MediumStackAlgo
 {
@@ -45,22 +47,28 @@ public class MediumStackAlgo
             if (int.TryParse(token, out int currentNumber))
             {
                 stack.Push(currentNumber);
+                continue;
             }
-            else
+
+            (int Last, int First) items = new(stack.Pop(), stack.Pop());
+            switch (token)
             {
-                (int last, int first) items = (stack.Pop(), stack.Pop());
-                if (token == "+")
-                    stack.Push(items.first + items.last);
-                if (token == "*")
-                    stack.Push(items.first * items.last);
-                if (token == "/")
-                    stack.Push(items.first / items.last);
-                if (token == "-")
-                    stack.Push(items.first - items.last);
+                case "+":
+                    stack.Push(items.First + items.Last);
+                    break;
+                case "-":
+                    stack.Push(items.First - items.Last);
+                    break;
+                case "*":
+                    stack.Push(items.First * items.Last);
+                    break;
+                case "/":
+                    stack.Push(items.First / items.Last);
+                    break;
             }
         }
 
-        return stack.First();
+        return stack.Pop();
     }
 
     #endregion
