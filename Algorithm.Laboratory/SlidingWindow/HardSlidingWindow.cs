@@ -78,7 +78,7 @@ public class HardSlidingWindow
         int left = 0;
         for (int right = 0; right < nums.Length; right++)
         {
-            while (winOfIndices.Count > 0 && nums[winOfIndices.Last!.Value] < nums[right])
+            while (winOfIndices.Count > 0 && nums[winOfIndices.Last()] < nums[right])
                 winOfIndices.RemoveLast();
             winOfIndices.AddLast(right);
 
@@ -87,7 +87,7 @@ public class HardSlidingWindow
 
             if (right + 1 >= k)
             {
-                result.Add(nums[winOfIndices.First.Value]);
+                result.Add(nums[winOfIndices.First()]);
                 left++;
             }
         }

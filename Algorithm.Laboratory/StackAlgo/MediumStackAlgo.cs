@@ -25,7 +25,7 @@ public class MediumStackAlgo
         minStack.Top();
         var secondMin = minStack.GetMin();
 
-        return new int[] { firstMin, secondMin };
+        return new int[] {firstMin, secondMin};
     }
 
     #endregion
@@ -83,19 +83,18 @@ public class MediumStackAlgo
     /// <returns></returns>
     public IList<string> GenerateParenthesis(int n)
     {
-        Stack<char> stack = new Stack<char>();
-
+        Stack<char> stack = new();
         List<string> result = new();
-
+        
         Recursion(0, 0);
-
+        
         return result;
 
         void Recursion(int open, int close)
         {
             if (open == close && open == n && close == n)
             {
-                result.Add(string.Join(string.Empty, stack.Reverse()));
+                result.Add(string.Join("", stack.Reverse()));
                 return;
             }
 
@@ -128,20 +127,17 @@ public class MediumStackAlgo
     public int[] DailyTemperatures(int[] temperatures)
     {
         if (temperatures.Length <= 1)
-            return new[] { 0 };
-
-        Stack<int> stackIndices = new Stack<int>();
-        var result = new int[temperatures.Length];
-
+            return new[] {0};
+        int[] result = new int[temperatures.Length];
+        Stack<int> stack = new();
         for (int right = 0; right < temperatures.Length; right++)
         {
-            while (stackIndices.Count > 0 && temperatures[stackIndices.Peek()] < temperatures[right])
+            while (stack.Count > 0 && temperatures[stack.Peek()] < temperatures[right])
             {
-                var dayIndex = stackIndices.Pop();
-                result[dayIndex] = right - dayIndex;
+                var index = stack.Pop();
+                result[index] = right - index;
             }
-
-            stackIndices.Push(right);
+            stack.Push(right);
         }
 
         return result;
@@ -167,7 +163,7 @@ public class MediumStackAlgo
 
         for (int i = position.Length - 1; i >= 0; i--)
         {
-            var currentArrivalTime = (target - position[i]) / (float)speed[i];
+            var currentArrivalTime = (target - position[i]) / (float) speed[i];
             if (currentArrivalTime > latestArrivalTime)
             {
                 fleet++;
