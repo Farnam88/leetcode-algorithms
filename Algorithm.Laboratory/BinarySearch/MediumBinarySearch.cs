@@ -14,10 +14,10 @@ public class MediumBinarySearch
     public bool SearchMatrix(int[][] matrix, int target)
     {
         int rows = matrix.Length - 1, col = matrix[0].Length - 1, top = 0, bot = rows;
-
+        int midRow = 0;
         while (top <= bot)
         {
-            int midRow = (top + bot) / 2;
+            midRow = (top + bot) / 2;
             if (target > matrix[midRow][^1])
                 top = midRow + 1;
             else if (target < matrix[midRow][0])
@@ -29,14 +29,14 @@ public class MediumBinarySearch
         if (!(top <= bot))
             return false;
         int right = col, left = 0;
-        int row = (top + bot) / 2;
-        while (left <= right)
+        midRow = (top + bot) / 2;
+        while (right >= left)
         {
-            var mid = (right + left) / 2;
-            if (target > matrix[row][mid])
-                left = mid + 1;
-            else if (target < matrix[row][mid])
-                right = mid - 1;
+            int midCol = (left + right) / 2;
+            if (target > matrix[midRow][midCol])
+                left = midCol + 1;
+            else if (target < matrix[midRow][midCol])
+                right = midCol - 1;
             else
                 return true;
         }
@@ -59,13 +59,13 @@ public class MediumBinarySearch
     {
         int left = 1, right = piles.Max();
         decimal result = right;
-        while (left <= right)
+        while (right >= left)
         {
-            var mid = (right + left) / 2;
+            var mid = (left + right) / 2;
             decimal hours = 0;
             for (int i = 0; i < piles.Length; i++)
             {
-                hours += Math.Ceiling(piles[i] / (decimal)mid);
+                hours += Math.Ceiling(piles[i] / (decimal) mid);
             }
 
             if (hours <= h)
@@ -77,7 +77,7 @@ public class MediumBinarySearch
                 left = mid + 1;
         }
 
-        return (int)result;
+        return (int) result;
     }
 
     #endregion
@@ -149,7 +149,7 @@ public class MediumBinarySearch
 
             int middle = (right + left) / 2;
             result = Math.Min(result, nums[middle]);
-            
+
             if (nums[middle] >= nums[left])
             {
                 left = middle + 1;
